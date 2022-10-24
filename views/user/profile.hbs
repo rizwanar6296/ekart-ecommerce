@@ -1,0 +1,535 @@
+<style>
+    span,
+    button,
+    a {
+        font-size: 15px;
+    }
+
+    ,
+    button {
+        background-color: #3b71ca !important;
+        color: #fff !important;
+        box-shadow: 0 4px 9px -4px #3b71ca !important;
+    }
+
+    .form-outline .form-control input {
+        font-size: initial !important;
+    }
+</style>
+<main class="main">
+    <div class="page-header text-center p-0" style="background-image: url('/images/page-header-bg.jpg')">
+        <div class="container">
+
+        </div><!-- End .container -->
+        <div class="container">
+            <img src="/images/userIcon.svg" class="mx-auto" style="height: 100px;" alt="">
+            <h3 class="page-title"> {{user.name}}</h1>
+        </div><!-- End .container -->
+        <div class="container">
+            <h3 class="page-title"> {{user.number}}</h1>
+        </div><!-- End .container -->
+        <div class="container">
+            <h3 class="page-title"> {{user.email}}</h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <div class="container mt-5 ">
+        <div class="cta cta-separator bg-image mb-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="cta-wrapper cta-text text-center">
+                        <h3 class="cta-title">User Details</h3><!-- End .cta-title -->
+                        <a type="button" class="btn btn-primary btn-rounded text-white"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;    border-radius: 25px;"
+                            data-toggle="modal" data-target="#userEdit"> <span>Edit</span><i
+                                class="icon-long-arrow-right"></i> </a>
+                    </div><!-- End .cta-wrapper -->
+                </div><!-- End .col-lg-6 -->
+
+                <div class="col-lg-6">
+                    <div class="cta-wrapper cta-text text-center">
+                        <h3 class="cta-title">My Orders</h3><!-- End .cta-title -->
+
+
+                        <a href="/orders" class="btn btn-primary btn-rounded"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;    border-radius: 25px;"><span>See
+                                Orders</span><i class="icon-long-arrow-right"></i></a>
+                    </div><!-- End .cta-wrapper -->
+                </div><!-- End .col-lg-6 -->
+
+
+            </div><!-- End .row -->
+        </div><!-- End .cta -->
+
+        <div class="cta cta-separator bg-image mb-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="cta-wrapper cta-text text-center">
+                        <h3 class="cta-title">My Wishlist</h3><!-- End .cta-title -->
+                        <a href="/wishlist" class="btn btn-primary btn-rounded"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;    border-radius: 25px;"><span>Click
+                                Here</span><i class="icon-long-arrow-right"></i></a>
+                    </div><!-- End .cta-wrapper -->
+                </div><!-- End .col-lg-6 -->
+
+                <div class="col-lg-6">
+                    <div class="cta-wrapper cta-text text-center">
+                        <h3 class="cta-title">Change Password</h3><!-- End .cta-title -->
+                        {{!-- <a href="/changepassword" class="btn btn-primary btn-rounded"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;"><span>Change</span><i
+                                class="icon-long-arrow-right"></i></a> --}}
+                        <a type="button" class="btn btn-primary btn-rounded text-white"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;    border-radius: 25px;"
+                            data-toggle="modal" data-target="#changePassword"> <span>Change</span><i
+                                class="icon-long-arrow-right"></i> </a>
+
+                    </div><!-- End .cta-wrapper -->
+                </div><!-- End .col-lg-6 -->
+
+
+            </div><!-- End .row -->
+        </div><!-- End .cta -->
+        <div class="cta cta-separator bg-image mb-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="cta-wrapper cta-text text-center" style="    margin-bottom: 60px;">
+                        <h3 class="cta-title">Manage Address</h3><!-- End .cta-title -->
+                        <button type="button"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;min-width: 157px;    border-radius: 25px;"
+                            class="btn btn-primary float-left" data-toggle="modal" data-target="#viewAddress">
+                            View<i class="icon-long-arrow-right"></i>
+                        </button>
+                        <button type="button"
+                            style="border: white; background-color: #3bcac4; color: #fff; box-shadow: 0 4px 9px -4px #3bcac4; min-width: 157px; border-radius: 25px;"
+                            class="btn btn-primary float-right" data-toggle="modal" data-target="#addAddress">
+                            Add Address<i class="icon-long-arrow-right"></i>
+                        </button>
+                    </div><!-- End .cta-wrapper -->
+                </div><!-- End .col-lg-6 -->
+
+                <div class="col-lg-6">
+                    <div class="cta-wrapper cta-text text-center">
+                        <h3 class="cta-title">Wallet</h3><!-- End .cta-title -->
+                        {{!-- <a href="/changepassword" class="btn btn-primary btn-rounded"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;"><span>Change</span><i
+                                class="icon-long-arrow-right"></i></a> --}}
+                        <a href="/wallet" class="btn btn-primary btn-rounded text-white"
+                            style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;    border-radius: 25px;"> <span>View</span><i
+                                class="icon-long-arrow-right"></i> </a>
+                    </div><!-- End .cta-wrapper -->
+                </div><!-- End .col-lg-6 -->
+            </div><!-- End .row -->
+        </div><!-- End .cta -->
+    </div>
+
+
+
+</main><!-- End .main -->
+
+
+<!--User Edit Modal -->
+<div class="modal fade" id="userEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <section class="m-5">
+                <p class="text-center" style="font-size:large">Edit user</p>
+                <form action="/edit-user/{{user._id}}" style=" font-size: initial" method="post">
+                    <div class="form-outline mb-4">
+                        <label class="form-label input-lg">Name</label>
+                        <input type="text" id="registerName" name="name" value="{{user.name}}" class="form-control" />
+                    </div>
+
+                    <!-- Username input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Username</label>
+                        <input id="number" name="number" value="{{user.number}}" class="form-control" />
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label input-lg" for="registerEmail">Email</label>
+                        <input type="email" id="email" name="email" value="{{user.email}}" class="form-control" />
+                    </div>
+                    <!-- Password input -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success" style="font-size:large">Save Changes</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+{{!-- change password modal --}}
+
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <section class="m-5">
+                <p class="text-center" style="font-size:large">Enter Old Password</p>
+                <form style=" font-size: initial" id="checkPassword">
+                    <div class="form-outline mb-4">
+                        <label class="form-label input-lg">Password</label>
+                        <input type="password" name="password" class="form-control" />
+                        <span class="text-danger" id="errorMessage"></span>
+                    </div>
+                    <!-- Password input -->
+                    <div class="text-center">
+                        <button class="btn btn-success" onclick="checkPassword(event)"
+                            style="font-size:large">Submit</button>
+                    </div>
+                </form>
+            </section>
+            <span id="changePasswordView" style="display:none;">
+                <section class="m-5">
+                    <p class="text-center" style="font-size:large">Change Password</p>
+                    <form action="/change-password" style=" font-size: initial" method="post">
+                        <div class="form-outline mb-4">
+                            <label class="form-label">New Pasword</label>
+                            <input id="password" name="password" onkeyup=" validPassowrd()" class="form-control" />
+                        </div>
+                        <span id="errorPassword" class="text-danger"></span>
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label">Confirm Pasword</label>
+                            <input id="confirmPassword" name="confirmPassword" onkeyup="validConfirmPassword()"
+                                class="form-control" />
+                        </div>
+                        <span id="errorConfirmPassword" class="text-danger"></span>
+                        <div>
+                            <button type="submit" class="btn btn-success " onclick="return passwordValidation(event)"
+                                style="font-size:large">Save Changes</button>
+                        </div>
+        </div>
+        </form>
+        </section>
+        </span>
+    </div>
+</div>
+</div>
+
+
+<!--User address Modal -->
+<div class="modal fade" id="viewAddress" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="text-center">
+                 <button type="button" class="close col-1 mt-1 float-right" data-dismiss="modal" aria-label="Close"> <span
+                        aria-hidden="true">&times;</span> </button>
+                <h5 class="modal-title col-4 mt-1  mx-auto" id="exampleModalLabel">Manage Address</h5>
+                <hr class="m-0">
+               
+            </div>
+                
+
+            <div class="row m-4 mb-5">
+                {{#each addressList}}
+                <div class="col-5" style="    border: solid white 1px; box-shadow: 2px 3px 4px 1px;">
+                    <p style="display:inline-block;">{{this.firstName}} {{this.lastName}}</p>
+                    <p>{{this.houseName}},{{this.streetAdress}}</p>
+                    <p>{{this.city}}, state:{{this.state}}, Pincode:{{this.pincode}}</p>
+                    <p>Mobile:{{this.phoneNumber}}</p>
+                    <div class="text-center mt-2 mb-2">
+                        <button class="btn btn-primary p-0"  style=" background-color: #3b71ca ; color: #fff ; box-shadow: 0 4px 9px -4px #3b71ca ;    min-width: 70px;    border-radius: 25px;" onclick="viewAddressEdit('{{this._id}}')">edit</button>
+                    <a href="/profile-delete-address/{{this._id}}"  style="background-color: #ca3b3b; color: #fff; box-shadow: 0 4px 9px -4px #ca3b3b; min-width: 70px; border-radius: 25px;" class="btn p-0 " onclick="return confirm('are you sure')">delete</a>
+                    </div>
+                    
+                </div>
+                {{/each}}
+
+            </div>
+            {{#each addressList}}
+            <section id={{this._id}} style="display:none;">
+                <div class="row m-5">
+                    <form action="/profile-edit-address/{{this._id}}" class="col-12" method="post">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <div class="row ">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form7Example1">First name</label>
+                                    <input type="text" id="firstName{{this._id}}" name="firstName"
+                                        value='{{this.firstName}}' onkeyup="valFirstName('{{this._id}}')"
+                                        class="form-control" />
+                                    <span id="errFirstName{{this._id}}" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form7Example2">Last name</label>
+                                    <input type="text" id="lastName{{this._id}}" name="lastName"
+                                        value='{{this.lastName}}' onkeyup="valLastName('{{this._id}}')"
+                                        class="form-control" />
+                                    <span id="errLastName{{this._id}}" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Email input -->
+
+
+                        <input type="email" id="email{{this._id}}" name='email' value='{{this.email}}' hidden />
+
+
+                        <!-- Number input -->
+
+
+                        <!-- Text input -->
+                        <label>Street address *</label>
+                        <input type="text" class="form-control" id="houseName{{this._id}}" value='{{this.houseName}}'
+                            name="houseName" placeholder="House number and Street name">
+                        <input type="text" class="form-control" id="streetAdress{{this._id}}"
+                            value='{{this.streetAdress}}' name="streetAdress"
+                            placeholder="Appartments, suite, unit etc ...">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>City *</label>
+                                <input type="text" class="form-control" id="city{{this._id}}" value='{{this.city}}'
+                                    name="city">
+                                <span id="errCity{{this._id}}" class="text-danger"></span>
+                            </div><!-- End .col-sm-6 -->
+
+                            <div class="col-sm-6">
+                                <label>State *</label>
+                                <input type="text" class="form-control" id="state{{this._id}}" value='{{this.state}}'
+                                    name="state">
+                                <span id="errState{{this._id}}" class="text-danger"></span>
+                            </div><!-- End .col-sm-6 -->
+                        </div><!-- End .row -->
+
+                        <div class="row ">
+                            <div class="col-sm-6">
+                                <label>Pincode *</label>
+                                <input type="text" class="form-control" id="pincode{{this._id}}"
+                                    value='{{this.pincode}}' name="pincode">
+                                <span id="errPincode{{this._id}}" class="text-danger"></span>
+                            </div><!-- End .col-sm-6 -->
+
+                            <div class="col-sm-6">
+                                <label class="form-label" for="form7Example6">Phone</label>
+                                <input id="phoneNumber{{this._id}}" name="phoneNumber" value='{{this.phoneNumber}}'
+                                    onkeyup="validPhoNeumber('{{this._id}}')" class="form-control" />
+                                <span id="errPhoneNumber{{this._id}}" class="text-danger"></span>
+                            </div>
+                        </div><!-- End .row -->
+                        {{!-- <input type="text" name="userId" value="{{userId}}" hidden> --}}
+                        <button type="submit" class="btn btn-success btn-round float-right"
+                            onclick="return addressValidation(event,'{{this._id}}')">Save Changes</button>
+                    </form>
+                </div>
+            </section>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+{{!-- add address modal --}}
+<div class="modal fade" id="addAddress" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Address</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                        aria-hidden="true">&times;</span> </button>
+            </div>
+                <div class="row m-5">
+                    <form action="/profile-add-address" class="col-12" method="post">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <div class="row ">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form7Example1">First name</label>
+                                    <input type="text" id="firstName" name="firstName"
+                                        onkeyup="valFirstNameAddAddress()"
+                                        class="form-control" />
+                                    <span id="errFirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form7Example2">Last name</label>
+                                    <input type="text" id="lastName" name="lastName"
+                                        onkeyup="valLastNameAddAddress()"
+                                        class="form-control" />
+                                    <span id="errLastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Email input -->
+
+
+                        {{!-- <input type="email" id="email" name='email' /> --}}
+
+
+                        <!-- Number input -->
+
+
+                        <!-- Text input -->
+                        <label>Street address *</label>
+                        <input type="text" class="form-control" id="houseName" 
+                            name="houseName" placeholder="House number and Street name">
+                        <input type="text" class="form-control" id="streetAdress"
+                             name="streetAdress"
+                            placeholder="Appartments, suite, unit etc ..." required>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>City *</label>
+                                <input type="text" class="form-control" id="city" 
+                                    name="city" required>
+                                <span id="errCity" class="text-danger"></span>
+                            </div><!-- End .col-sm-6 -->
+
+                            <div class="col-sm-6">
+                                <label>State *</label>
+                                <input type="text" class="form-control" id="state"
+                                    name="state" required>
+                                <span id="errState" class="text-danger"></span>
+                            </div><!-- End .col-sm-6 -->
+                        </div><!-- End .row -->
+
+                        <div class="row ">
+                            <div class="col-sm-6">
+                                <label>Pincode *</label>
+                                <input type="text" class="form-control" id="pincode"
+                                    name="pincode" required>
+                                <span id="errPincode" class="text-danger"></span>
+                            </div><!-- End .col-sm-6 -->
+
+                            <div class="col-sm-6">
+                                <label class="form-label" for="form7Example6">Phone</label>
+                                <input id="phoneNumber" name="phoneNumber" 
+                                    onkeyup="validPhoNeumberAddAddress()" class="form-control" />
+                                <span id="errPhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div><!-- End .row -->
+                        {{!-- <input type="text" name="userId" value="{{userId}}" hidden> --}}
+                        <button type="submit" class="btn btn-success btn-round float-right"
+                            onclick="return addressValidationAddAddress(event)">Save Changes</button>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/userLogin/profileAddressValidation.js"></script>
+<script>
+    let previousAddressId
+    function viewAddressEdit(addressId) {
+        console.log(previousAddressId)
+        if (document.getElementById(addressId).style.display == 'block') {
+            document.getElementById(addressId).style.display = 'none'
+        } else {
+            if (previousAddressId) {
+                document.getElementById(previousAddressId).style.display = 'none'
+                document.getElementById(addressId).style.display = 'block'
+                previousAddressId = addressId
+            } else {
+                document.getElementById(addressId).style.display = 'block'
+                previousAddressId = addressId
+            }
+        }
+
+    }
+    function checkPassword(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/check-password',
+            method: 'post',
+            data: $('#checkPassword').serialize(),
+            success: (response) => {
+                if (response.status) {
+                    document.getElementById('errorMessage').innerHTML = ''
+                    document.getElementById('changePasswordView').style.display = 'block'
+                } else {
+                    document.getElementById('errorMessage').innerHTML = response.errMsg
+                }
+            }
+        })
+    }
+
+
+
+    var errorPassword = document.getElementById('errorPassword')
+    var errorConfirmPassword = document.getElementById('errorConfirmPassword')
+
+    function validPassowrd() {
+        const password = document.getElementById('password').value
+        if (password == "") {
+            errorPassword.innerHTML = "enter a password"
+            return false
+        }
+        if (password.length < 5) {
+            errorPassword.innerHTML = "password should be more than five characters"
+            return false
+        }
+        errorPassword.innerHTML = null
+        return true
+    }
+    function validConfirmPassword() {
+        let password = document.getElementById('password').value
+        let confirmPassword = document.getElementById('confirmPassword').value
+        if (password == confirmPassword) {
+            errorConfirmPassword.innerHTML = null
+            return true
+        } else {
+            errorConfirmPassword.innerHTML = "password not matching"
+            return false
+        }
+    }
+
+    function passwordValidation(e) {
+
+        var check = (element) => {
+            if (element) {
+                return true
+            } else {
+                return false
+            }
+        }
+        var array = [validPassowrd(), validConfirmPassword()]
+        if (array.every(check)) {
+
+            return true
+
+        } else {
+            e.preventDefault()
+            return false
+        }
+
+    }
+
+
+
+
+
+</script>

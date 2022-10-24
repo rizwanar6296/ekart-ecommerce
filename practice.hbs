@@ -1,0 +1,101 @@
+{{#each products}}
+                                    <div class="row">
+                                        <div class="col-6 col-lg-3">
+                                            <figure class="product-media">
+                                                <a href="product.html">
+                                                    <img src="/images/ekart/products/{{this._id}}.jpg" alt="Product image" class="product-image">
+                                                </a>
+                                            </figure><!-- End .product-media -->
+                                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                        <div class="col-6 col-lg-3 order-lg-last">
+                                            <div class="product-list-action">
+                                                <div class="product-price">
+                                                    {{this.price}}
+                                                </div><!-- End .product-price -->
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                    <span class="ratings-text">( 2 Reviews )</span>
+                                                </div><!-- End .rating-container -->
+
+                                                <div class="product-action">
+                                                    <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                                    <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                                </div><!-- End .product-action -->
+
+                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                            </div><!-- End .product-list-action -->
+                                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                        <div class="col-lg-6">
+                                            <div class="product-body product-action-inner">
+                                                <a href="#" class="btn-product btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
+                                                {{!-- <div class="product-cat">
+                                                    <a href="#">Women</a>
+                                                </div><!-- End .product-cat --> --}}
+                                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
+
+                                                <div class="product-content">
+                                                    <p>{{this.description}}</p>
+                                                </div><!-- End .product-content -->
+                                            </div><!-- End .product-body -->
+                                        </div><!-- End .col-lg-6 -->
+                                    </div><!-- End .row -->
+                                </div><!-- End .product -->  
+								{{/each}}         
+
+
+
+
+
+
+ {{!-- practice area --}}
+                    
+                                <div class="col-md-2 col-lg-2 col-xl-2 d-flex">
+                      <button class="btn btn-link px-2" onclick="quantityChange("'{{this.product._id}}','{{this._id}}',1")">
+                        <i class="fas fa-minus"></i>
+                      </button>
+
+                      <input id="form1" min="0" name="quantity" value='{{this.quantity}}' type="number"
+                        class="form-control form-control-sm" />
+                        
+                      <button class="btn btn-link px-2"
+                        onclick="quantityChange('{{this.product._id}}','{{this._id}}',1)">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                     
+                    </div>
+                    {{!-- practice area --}}
+
+
+
+
+                       {{!-- alert('value'+$('#quantity').val()) --}}
+
+
+
+                       <script>const request = new paypal.orders.OrdersCreateRequest()
+      request.prefer('return=representation')
+      request.requestBody({
+        intent:'CAPTURE',
+        purchase_units:[{
+          amount:{
+            currency_code:'INR',
+            value:totalAmount
+          }
+        }]
+      })
+      (async ()=>{
+        try{
+          const order =await paypalCient.execute(request)
+          console.log('=============================paypal order=========================')
+          console.log(order)
+          console.log('=============================paypal order=========================')
+          res.json({paypalOrder:true,orderId:orderId})
+        } catch (e){
+          res.status(500).json({error:e.message})
+        }
+      })();
+      </script>

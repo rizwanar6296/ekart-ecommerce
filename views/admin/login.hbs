@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Login V4</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/userLogin/util.css">
+	<link rel="stylesheet" type="text/css" href="/css/userLogin/main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('/images/userLogin/bg-01.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form" action="/admin" method="post" >
+            <span class="login100-form-title p-b-49">
+             Admin Login
+					</span>
+					<div class="wrap-input100  ">
+						<span>Email</span> 
+						<input class="input100 " type="text" name="email" id="email" placeholder="Type your username">
+					
+					</div>
+					<div class="wrap-input100  mt-4">
+						<span class="mt-4">Password</span>
+						<input class="input100" type="password" name="password" id="password" placeholder="Type your password">
+						
+					</div>
+					<span class="text-danger">{{errMsg}}</span>
+					<div class="text-right p-t-8 p-b-31">
+						
+						<a href="#">
+							Forgot password?
+						</a>
+					</div>
+  
+				
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="submit" class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+					<div class="flex-col-c p-t-100">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+	<!--===============================================================================================-->
+
+</body>
+
+</html>

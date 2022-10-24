@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Login V4</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/userLogin/util.css">
+	<link rel="stylesheet" type="text/css" href="/css/userLogin/main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('/images/userLogin/bg-01.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form" action="/verify/{{phoneNumber}}" method="post">
+					<span class="login100-form-title p-b-49">
+						OTP Login
+					</span>
+					<div class="wrap-input100 text-center ">
+						<span>Verification</span> 
+						<input class="input100 " type="number" name="code" id="code"  placeholder="Enter the code">
+					
+					</div>
+					
+					<div style="text-align:center;">
+					<span id="timer" ></span>
+					</div>	
+					<div class="text-center p-t-8 p-b-10 mt-3">
+					<span id="msg">
+					{{#if successMsg}}
+					<span class="alert alert-success mt-2">{{successMsg}}</span>
+					{{/if}}		
+					{{#if errMsg}}
+					<span class="alert alert-danger mt-2">{{errMsg}}</span>
+					{{/if}}
+					</span>	
+						<a href="/resend-code/?number={{phoneNumber}}" class="btn btn-primary rounded-pill" id="resendCode" style="display:none;">
+							Resend Code
+						</a>
+					</div>
+					<div class="container-login100-form-btn ">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="submit" class="login100-form-btn">
+								Submit
+							</button>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script>
+		let timer = document.getElementById('timer')
+		let countDown =20		
+		let myTimer =function () {			
+			if(countDown==0){
+				clearInterval(myInterval)
+				timer.style.display='none'
+				document.getElementById('resendCode').style.display='block'
+			}else{
+				timer.innerHTML = countDown
+				countDown=countDown-1
+			}			
+		}
+		let myInterval = setInterval(myTimer,1000)
+		setTimeout(()=>{
+					document.getElementById('msg').style.display='none'
+				},3000)	
+	</script>
+
+</body>
+
+</html>

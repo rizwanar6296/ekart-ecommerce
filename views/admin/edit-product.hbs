@@ -1,0 +1,83 @@
+<div class="container col-6">
+    <h2 class="text-center">Edit Product</h2>
+    <form action="/admin/edit-product/{{productDetails._id}}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-outline col-6 mb-4">
+            <input type="text" id="productName" name="productName" class="form-control" value={{productDetails.productName}} required />
+            <label class="form-label">Product Name</label>
+        </div>
+        <div class="form-outline col-6 mb-4">
+            <input type="number" id="price" name="price" class="form-control" value={{productDetails.price}} required />
+            <label class="form-label">Price</label>
+            
+        </div>
+        </div>
+        
+        <div class="row">
+        <!-- Username input -->
+        <div class="form-outline col-6 mb-4">
+            <input type="number" id="discount" name="discount" class="form-control" value={{productDetails.discount}} required />
+            <label class="form-label">Discount</label>
+            
+        </div>
+        <div class="form-outline col-6 mb-4">
+            <input type="number" id="stock" name="stock" class="form-control" value={{productDetails.stock}} required />
+            <label class="form-label">Stock</label>
+            
+        </div>
+         </div>
+        <div class="row">
+            <div class="col-6">
+            <div><label class="form-label" >Brand</label></div>
+            <select class="form-select form-select-sm mb-4" name="brand" aria-label=".form-select-lg example" required>
+
+            
+
+
+
+
+
+            {{#each brands}}  
+            {{#ifEquals ../productDetails.brand this._id this}}
+            <option value={{this._id}} selected>{{this.brand}}</option>
+            {{else}}
+            <option value={{_id}}>{{brand}}</option>
+             {{/ifEquals}}
+            {{/each}}    
+          </select>
+            </div>
+            <div class="col-6">
+                 <div><label class="form-label" >Type</label></div>
+                <select class="form-select form-select-sm mb-4" name="type" aria-label=".form-select-lg example" required> 
+            <option value={{productDetails.type}} selected>{{productDetails.type}}</option>
+           {{#each category.type}}
+            <option value={{this}}>{{this}}</option>
+            {{/each}}  
+          </select></div>
+         </div>
+        
+           
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <textarea type="text" id="description" name="description" class="form-control" rows="5" required>{{productDetails.description}}</textarea>
+            <label class="form-label" >Description</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="registerPassword"  >image</label>
+            <img src="/images/ekart/products/{{productDetails._id}}.jpg" id="imgView" width="100px" alt="">
+            <input type="file" class="form-control" name="image" multiple>
+        </div> 
+        
+        <button type="submit" class="btn btn-success mt-4">Submit</button> 
+        <a href="/admin/product-details" class="btn btn-primary mt-4" style="float:right;">back</a>
+          
+    </form>
+</div>
+{{!-- <script>
+    function viewImg(event){
+         document.getElementById("imgView").src=URL.createObjectURL(event.target.files[0])
+    }
+   
+</script> --}}

@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="/css/admin-css/table.css">
+
+<div class="container">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h2 class="text-center"><b>Return Management </b></h2>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr class="col-12 text-center">
+                        <th class="col-1">No</th>
+                        <th>Customer Name</th>
+                        <th>Reason</th>
+                        <th>description</th>
+                        <th>Date</th>
+                        <th>Request</th>
+                        <th>More Details</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    {{#each returnDetals}}
+                    <tr class="text-center">
+                        <td>{{indexing @index}}</td>
+                        <td>{{this.order.firstName}} {{this.order.lastName}}</td>
+                        <td>{{this.return.complaint}}</td>
+                        <td>{{this.return.description}}</td>
+                        <td>{{this.return.date}}</td>
+                        <td class="p-0"> 
+                            {{#ifEquals this.return.status 'return-request' false}}
+                            <form action="/admin/return-approved/{{../this._id.returnId}}/{{../this._id.orderId}}" method="post">
+                                <select class="form-select form-select-sm" style="padding-right: 20px; display: inline; width: auto; "  name="status" aria-label=".form-select-lg example">
+                                <option value="{{../this.return.status}}">{{../this.return.status}}</option>
+                                <option value="return-approved">return-approved</option>
+                            </select>
+                             <button type="submit" class="btn btn-success" style="padding: 0px; height: 25px; width: 69px;font-size: 15px;">submit</button>
+                            </form>
+                            {{else}}
+                            <h6 class="badge bg-success" style="font-size: 15px;">{{../this.return.status}}</h6>
+                            {{/ifEquals}}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#{{this._id.returnId}}"> more details </button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{#each returnDetals}}
+<!-- view-more modal -->
+<div class="modal fade" id="{{this._id.returnId}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="d-flex justify-content-around" style="gap: 10px;">
+
+                        <div class="card col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Product Details</h5>
+                                {{#each this.productList}}
+                                 <hr>
+                                <div class="d-flex justify-content-around">  
+                                    <div style="display: inline;"> <img src="/images/ekart/products/{{this.product.image.[0]}}" style="height:50px;" alt=""> </div>  
+                                    <div class="d-flex justify-content-around" style="flex-direction:column;">
+                                        <h6 class="card-subtitle mb-2 text-muted">Name:{{this.product.productName}}</h6>                              
+                                        <h6 class="card-subtitle mb-2 text-muted">Price:{{this.product.price}}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">QTY:{{this.quantity}}</h6>           
+                                    </div>                                                                                                                              
+                                </div>
+                               
+                                {{/each}}
+                            </div>
+                        </div>
+                        
+                        <div class="card col-md-6" >
+                            <div class="card-body">
+                                <h5 class="card-title">Order Details</h5>
+                                <h5 class="card-title p-0">Address:</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{this.order.firstName}} {{this.order.lastName}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">{{this.order.address.houseName}},{{this.order.address.streetAdress}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">{{this.order.address.city}},{{this.order.address.state}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Pincode:{{this.order.address.pincode}}, Phone:{{this.order.phoneNumber}}</h6>
+                                <h5 class="card-title p-0">Payment Method : <span class="text-muted">{{this.order.paymentMethod}}</span> </h5>
+                                <h5 class="card-title p-0">Date : <span class="text-muted">{{this.order.date}}</span></h5>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- view-more modal -->
+{{/each}}

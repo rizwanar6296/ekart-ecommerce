@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="/css/admin-css/table.css">
+
+<div class="container">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h2 class="text-center"><b>Banner Management</b></h2>
+                    </div>
+                </div>
+            </div>
+            <a type="button" class=" btn btn-success float-right" data-toggle="modal" data-target=".bd-example-modal-lg"
+                href="/admin/add-banner">Add Banner</a>
+            <table class="table">
+                <thead>
+                    <tr class="col-12 text-center">
+                        <th class="col-2">No</th>
+                        <th class="col-6">Banner Name</th>
+                        <th class="col-2">Date</th>
+                        <th class="col-1">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    {{#each banners}}
+                    <tr class="text-center">
+                        <td>{{indexing @index}}</td>
+                        <td><h5>{{this.bannerName}}</h5> <br>
+                            <img src="/images/ekart/banners/{{this.image}}" style="width: 500px;" alt="">
+                        </td>
+                        <td>{{this.date}}</td>
+                        <td >
+                            <button class="btn btn-primary col-4 mr-2"  data-toggle="modal"
+                                data-target="#{{this._id}}">edit</button>
+                            <a href="/admin/delete-banner/{{this._id}}" class="btn btn-danger text-white col-5" onclick="return confirm('are you sure?')" id="delete{{this._id}}">delete</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="float-right mr-4 mt-3">&times;</span>
+            </button>
+            <div class="modal-header ">
+                <div class="container">
+                    <h2 class="text-center mb-5">Add Banner</h2>
+                    <form action="/admin/add-banner" enctype="multipart/form-data" method="post">
+                        <div class="form-outline mb-4">
+                            <input type="text" id="bannerName" name="bannerName" class="form-control" required />
+                            <label class="form-label">Banner Name</label>
+                        </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label">image</label>
+                            <input type="file" class="form-control" name="image">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success mb-5">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{#each banners}}
+<div class="modal fade" aria-labelledby="myLargeModalLabel" id="{{this._id}}" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="float-right mr-4 mt-3">&times;</span>
+            </button>
+            <div class="modal-header ">
+                <div class="container">
+                    <h2 class="text-center mb-5">Edit Banner</h2>
+                    <form action="/admin/edit-banner/{{this._id}}" enctype="multipart/form-data" method="post">
+                        <div class="form-outline mb-4">
+                            <input type="text" id="bannerName" name="bannerName" value="{{this.bannerName}}" class="form-control" required />
+                            <label class="form-label">Banner Name</label>
+                        </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <img src="/images/ekart/banners/{{this._id}}.jpg" id="imgView{{this._id}}" style="width: 200px;" alt="">
+                            <label class="form-label">image</label>
+                            <input type="file" class="form-control" onchange="viewImg(event,'{{this._id}}')" name="image">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success mb-5">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+<script>
+     function viewImg(event,id){
+         document.getElementById("imgView"+id).src=URL.createObjectURL(event.target.files[0])
+    }
+</script>

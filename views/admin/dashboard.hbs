@@ -1,0 +1,395 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+    integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{!--
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <!-- Left side columns -->
+    <div class="row">
+        <!-- Sales Card -->
+        <div class="col-md-4">
+            <div class="card info-card sales-card">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">Sales <span>| Today</span></h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-cart"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>145</h6>
+                            <span class="text-success small pt-1 fw-bold">12%</span> <span
+                                class="text-muted small pt-2 ps-1">increase</span>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Sales Card -->
+
+        <!-- Revenue Card -->
+        <div class="col-md-4">
+            <div class="card info-card revenue-card">
+
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">Revenue <span>| This Month</span></h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-currency-dollar"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>$3,264</h6>
+                            <span class="text-success small pt-1 fw-bold">8%</span> <span
+                                class="text-muted small pt-2 ps-1">increase</span>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Revenue Card -->
+
+        <!-- Customers Card -->
+        <div class="col-xl-4">
+
+            <div class="card info-card customers-card">
+
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">Customers <span>| This Year</span></h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>1244</h6>
+                            <span class="text-danger small pt-1 fw-bold">12%</span> <span
+                                class="text-muted small pt-2 ps-1">decrease</span>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- End Customers Card -->
+
+        <!-- Reports -->
+        <div class="col-12">
+            <div class="card">
+
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><button class="dropdown-item" onclick="weeklyReport()">This Week</button></li>
+                        <li><button class="dropdown-item" onclick="monthlyReport()">This Month</button></li>
+                        <li><button class="dropdown-item" onclick="yearlyReport()">This Year</button></li>
+                    </ul>
+                </div>
+                
+                <div class="card-body">
+                    <canvas id="line-chart" width="400" height="400"></canvas>
+                </div>
+                
+                </div>
+            </div><!-- End Reports -->
+            <div class="col-lg-6">
+
+          
+          <div class="card">
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body pb-0">
+              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
+
+              <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+        </div>
+</section>
+
+<script>
+
+
+    /* <-----------------------------------------------------SALES REPORT GRAPH ADMIN----------------------------------------------------> */
+    
+                        
+        var myChart;
+        var myChart2;
+        var myChart3;
+        var chart1;
+        var chart2;
+        var chart3;
+        window.onload = (event) => {
+          weeklyReport()
+        };
+    
+    
+    /* <------------------------------------------------------Weekly report---------------------------------------------------------------> */
+    
+    
+                        
+        function weeklyReport(){
+    
+          chart1=true
+    
+    
+          const data = {
+            labels: [
+              {{#each weeklySalesReport}}'{{_id}}',{{/each}}
+            ],
+            datasets: [{
+              label: 'Total Sale Amount',
+              data: [{{#each weeklySalesReport}}'{{totalSaleAmount}}',{{/each}}],
+              backgroundColor: [
+                'rgb(103 119 239)',
+                'rgb(102 187 106)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 99, 132)'
+              ]
+            }]
+          };
+          // </block:setup>
+    
+          // <block:config:0>
+          const config = {
+            type: 'line',
+            data: data,
+            options: {
+              aspectRatio:3,
+              responsive:true
+            }
+          };
+    
+          if(chart2){
+             myChart2.destroy()  
+          }
+          if(chart3){
+            myChart3.destroy() 
+          }
+        
+          myChart = new Chart(document.getElementById('line-chart'), config)
+          
+           
+           
+        }  
+    
+    /* <---------------------------------------------------Weekly report ends------------------------------------------------------------> */
+    
+    
+    
+    
+    /* <-----------------------------------------------------Monthly report---------------------------------------------------------------> */
+    
+                        
+        function monthlyReport(){
+    
+          chart2=true
+    
+          const data = {
+            labels: [
+              {{#each monthlySalesReport}}'{{_id}}',{{/each}}
+            ],
+            datasets: [{
+              label: 'Total Sale Amount',
+              data: [{{#each monthlySalesReport}}'{{totalSaleAmount}}',{{/each}}],
+              backgroundColor: [
+                'rgb(103 119 239)',
+                'rgb(102 187 106)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 99, 132)'
+              ]
+            }]
+          };
+          // </block:setup>
+    
+          // <block:config:0>
+          const config = {
+            type: 'line',
+            data: data,
+            options: {
+              aspectRatio:3,
+              responsive:true
+            }
+          };            
+    
+            if(chart1){
+            myChart.destroy() 
+          }
+          if(chart3){
+            myChart3.destroy() 
+          }
+             
+          myChart2 = new Chart(document.getElementById('line-chart'), config)
+          
+              
+         
+        } 
+    
+    
+    /* <---------------------------------------------------Monthly report ends------------------------------------------------------------> */
+    
+    
+    
+    
+        function yearlyReport(){
+    
+          chart3=true
+    
+          const data = {
+            labels: [
+              {{#each yearlySalesReport}}'{{_id}}',{{/each}}
+            ],
+            datasets: [{
+              label: 'Total Sale Amount',
+              data: [{{#each yearlySalesReport}}'{{totalSaleAmount}}',{{/each}}],
+              backgroundColor: [
+                'rgb(103 119 239)',
+                'rgb(102 187 106)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 99, 132)'
+              ]
+            }]
+          };
+          // </block:setup>
+    
+          // <block:config:0>
+          const config = {
+            type: 'line',
+            data: data,
+            options: {
+              aspectRatio:3,
+              responsive:true
+            }
+          };            
+          if(chart1){
+            myChart.destroy() 
+          }
+          if(chart2){
+            myChart2.destroy() 
+          }
+    
+         myChart3 = new Chart(document.getElementById('line-chart'), config)
+        } 
+    
+    
+    /* <---------------------------------------------------Monthly report ends-----------------------------------------------------------> */
+    
+    
+    
+    </script>
+
+
+
+          <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  echarts.init(document.querySelector("#trafficChart")).setOption({
+                    tooltip: {
+                      trigger: 'item'
+                    },
+                    legend: {
+                      top: '5%',
+                      left: 'center'
+                    },
+                    series: [{
+                      name: 'Access From',
+                      type: 'pie',
+                      radius: ['40%', '70%'],
+                      avoidLabelOverlap: false,
+                      label: {
+                        show: false,
+                        position: 'center'
+                      },
+                      emphasis: {
+                        label: {
+                          show: true,
+                          fontSize: '18',
+                          fontWeight: 'bold'
+                        }
+                      },
+                      labelLine: {
+                        show: false
+                      },
+                      data: [
+                        {
+                          value: {{paymentCount.CODCount}},
+                          name: 'COD'
+                        },
+                        {
+                          value: {{paymentCount.razorpayCount}},
+                          name: 'Razorpay'
+                        },
+                        {
+                          value: {{paymentCount.paypalCount}},
+                          name: 'Paypal'
+                        },
+                       
+                      ]
+                    }]
+                  });
+                });
+              </script>

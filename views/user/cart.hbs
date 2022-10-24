@@ -1,0 +1,255 @@
+
+<main class="main">
+  <div class="cart mt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <table class="table table-cart table-mobile">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <div class="d-flex justify-content-between align-items-center">
+              <h1 class="fw-bold mb-0 text-black" style="font-size: 4rem;">Shopping Cart</h1>
+              <h6 id="cartCount" class="mb-0 text-muted">{{itemCount}} items</h6>
+            </div>
+            <tbody>
+              {{#each cartItems}}
+              <tr id="row{{this.product._id}}">
+                <td class="product-col">
+                  <div class="product">
+                    <figure class="product-media">
+                      <a href="#">
+                        <img src="/images/ekart/products/{{this.product.image.[0]}}" alt="Product image">
+                      </a>
+                    </figure>
+
+                    <h3 class="product-title">
+                      <a href="#">{{this.product.productName}}</a><br>
+                    </h3><!-- End .product-title -->
+
+                  </div><!-- End .product -->
+
+                </td>
+                <td class="price-col" id="productPrice{{this.product._id}}">{{this.product.price}}</td>
+              
+                <td class="price-col" id="discount{{this.product._id}}" >{{this.discount}}</td>
+                
+                <td class="quantity-col">
+                  <button id='minusBtn{{this.product._id}}' class="btn btn-link px-2"
+                    onclick="changeQuantity('{{this._id}}','{{this.item}}',-1)"
+                    style="height: 17px; width: 25px; background: #333333; color: rgb(255, 255, 255); border-radius: 10px;">-</button>
+                  <input id="quantity{{this.product._id}}" value="{{this.quantity}}"
+                    style="width: 30px;border: none;text-align: center;">
+                  <button id='plusBtn{{this.product._id}}' class="btn btn-link px-2"
+                    onclick="changeQuantity('{{this._id}}','{{this.item}}',1)"
+                    style="height: 17px;width: 25px; background: #333333; color: rgb(255, 255, 255); border-radius: 10px;">+</button><br>
+                  <span id="errorMessage{{this.product._id}}" class="text-center text-danger"></span>
+
+                </td>
+                 {{!-- {{#productCategoryDiscount this.product.discount ../brands this.product.brand}}     
+                <td class="total-col" id="productTotal{{../this.product._id}}">{{calculateDiscount discount ../this.productTotal}}</td>
+                {{else}}
+                <td class="total-col" id="productTotal{{../this.product._id}}">{{../this.productTotal}}</td>
+                {{/productCategoryDiscount}} --}}
+                <td class="total-col" id="productTotal{{this.product._id}}">{{this.productTotal}}</td>
+
+                <td class="remove-col"><button id="remove{{this.product._id}}"
+                    onclick="removeItem('{{this._id}}','{{this.item}}')" class="btn-remove"><i
+                      class="icon-close"></i></button></td>
+              </tr>
+
+              {{/each}}
+            </tbody>
+          </table><!-- End .table table-wishlist -->
+        </div><!-- End .col-lg-9 -->
+        <aside class="col-lg-3 ">
+          <form action="">
+            <div class="summary summary-cart">
+              <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+
+              <table class="table table-summary">
+                <tbody>
+
+                  <tr class="summary-shipping">
+                    <td>Shipping:</td>
+                    <td>&nbsp;</td>
+                  </tr>
+
+                  <tr class="summary-shipping-row">
+                    <td>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="free-shipping" name="shipping" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="free-shipping">Free Shipping</label>
+                      </div><!-- End .custom-control -->
+                    </td>
+                    <td>₹0.00</td>
+                  </tr><!-- End .summary-shipping-row -->
+
+                  <tr class="summary-shipping-row">
+                    <td>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
+                        <label class="custom-control-label" for="standart-shipping">Standart:</label>
+                      </div><!-- End .custom-control -->
+                    </td>
+                    <td>₹100.00</td>
+                  </tr><!-- End .summary-shipping-row -->
+
+                  <tr class="summary-shipping-row">
+                    <td>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
+                        <label class="custom-control-label" for="express-shipping">Express:</label>
+                      </div><!-- End .custom-control -->
+                    </td>
+                    <td>₹200.00</td>
+                  </tr><!-- End .summary-shipping-row -->
+
+                  {{!-- <tr class="summary-shipping-estimate">
+                    <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+                    <td>&nbsp;</td>
+                  </tr><!-- End .summary-shipping-estimate --> --}}
+
+                  <tr class="summary-total">
+                    <td>Total:</td>
+
+                    <td id="totalAmount">{{totalAmount}}</td>
+
+                  </tr><!-- End .summary-total -->
+                </tbody>
+              </table><!-- End .table table-summary -->
+
+              {{!-- <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO
+                CHECKOUT</a> --}}
+            </div><!-- End .summary -->
+            {{#if totalAmount}}
+            <a href="/place-order" class="btn btn-dark btn-block btn-lg text-white"
+              data-mdb-ripple-color="dark">Continue</a>
+            {{else}}
+            <a class="btn btn-dark btn-block btn-lg text-white" data-mdb-ripple-color="dark">Continue</a>
+            {{/if}}
+          </form>
+        </aside><!-- End .col-lg-3 -->
+      </div><!-- End .row -->
+    </div><!-- End .container -->
+  </div><!-- End .cart -->
+</main>
+{{!-- {{#each cartItems}}
+{{#each this.productTotal}}
+{{#if '{{this._id}}' = '{{../this.item}}'}}
+<div>{{this.total}}</div>
+{{/if}}
+{{/each}}
+{{/each}} --}}
+
+
+
+<script>
+  function changeQuantity(cartId, productId, count) {
+    quantity = document.getElementById('quantity' + productId).value
+    quantity = parseInt(quantity)
+    let discount =parseInt(document.getElementById('discount'+productId).innerHTML)
+    if (quantity > 1 || count == 1) {
+
+      $.ajax({
+        url: '/change-product-quantity',
+        data: {
+          cartId: cartId,
+          productId: productId,
+          count: count,
+          quantity: quantity
+        },
+        method: 'post',
+        success: (response) => {
+          if (response.status) {
+            if (response.outOfStockError) {
+              document.getElementById('errorMessage' + productId).innerHTML = response.outOfStockError
+            } else {
+              document.getElementById('minusBtn' + productId).removeAttribute("disabled");
+              document.getElementById('errorMessage' + productId).innerHTML = ''
+              quantity = parseInt(quantity) + parseInt(count)
+              $('#quantity').val(quantity)
+              productPrice = parseInt(document.getElementById('productPrice' + productId).innerHTML)
+              productTotal = parseInt(productPrice) * parseInt(quantity)
+              if(discount!=0){
+                productTotal=productTotal-(productTotal*(discount/100))
+              }
+              alert
+              document.getElementById('quantity' + productId).value = quantity
+              document.getElementById('productTotal' + productId).innerHTML = productTotal
+              document.getElementById('totalAmount').innerHTML =response.totalAmount
+            }
+          } else {
+            location.href = '/login'
+          }
+
+        }
+      })
+    } else {
+      document.getElementById('minusBtn' + productId).setAttribute("disabled", "disabled");
+    }
+
+  }
+
+
+  function removeItem(cartId, productId) {
+    const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
+  },
+  buttonsStyling: false
+})
+swalWithBootstrapButtons.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!',
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    $.ajax({
+            url: '/remove-cart-item',
+            data: {
+              cartId: cartId,
+              productId: productId
+            },
+            method: 'post',
+            success: (response) => {
+              document.getElementById('row' + productId).style.display = 'none'
+              document.getElementById('cartCount').innerHTML = parseInt(document.getElementById('cartCount').innerHTML) - 1 + ' items'
+              if (response.totalAmount)
+                document.getElementById('totalAmount').innerHTML = '₹' + response.totalAmount
+              else
+                document.getElementById('totalAmount').innerHTML = '₹'
+
+            }
+          })
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire(
+      'Cancelled',
+      'Your imaginary file is safe :)',
+      'error'
+    )
+  }
+})
+   
+          
+        
+
+  }
+
+</script>

@@ -1,0 +1,92 @@
+<main class="main">
+<div class="cart mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 p-0" style="border: solid #ebebeb 1px;">
+                  
+                    <table class="table table-cart table-mobile">
+                        <thead>
+                            <tr class="text-center">
+                                <th class="col-3">Product</th>
+                                <th class="col-6">Description</th>
+                                <th class="col-2">Price</th>
+                                <th class="col-1"></th>
+                            </tr>
+                        </thead>
+                  <div class="d-flex justify-content-between align-items-center" style="border: solid #ffffff; box-shadow: 5px 4px 9px -2px; ">
+                    <h1 class="fw-bold mb-0 text-black mx-auto" style="font-size: 4rem;">WishList</h1>
+                  </div>
+                  
+                        <tbody>
+                          {{#each wishlistProducts}}
+                           {{#if this.visibility}}
+                            <tr id="row{{this._id}}" class="text-center">
+                                <td class="product-col ">
+                                    <div class="product ml-3">
+                                        <figure class="product-media">
+                                            <a href="/product-details/?productId={{this._id}}">
+                                                <img  src="/images/ekart/products/{{this.image.[0]}}" alt="Product image">
+                                            </a>
+                                        </figure>
+
+                                        <h3 class="product-title">
+                                            <a href="/product-details/?productId={{this._id}}">{{this.productName}}</a><br>
+                                        </h3><!-- End .product-title -->
+                                        
+                                    </div><!-- End .product -->
+                              
+                                </td>
+                                <td class="price-col " id="productPrice">{{this.description}}</td>
+                                
+                              
+                                <td class="total-col" id="productTotal">{{this.price}}</td>
+                             
+                                <td class="remove-col text-center"><button id="remove{{this.product._id}}" onclick="removeWishlist('{{this._id}}')" class="btn-remove"><i class="icon-close"></i></button></td>
+                            </tr>
+                              {{/if}}
+                            {{/each}}
+                            
+                        </tbody>
+                    </table><!-- End .table table-wishlist -->
+                    {{#unless wishlistProducts}}
+                    <h2 class="text-center">Your Cart is Empty</h2>
+                    <h6 class="text-center">Looks like you have not added anything to your cart. <br> Go ahead & Explore top categories</h6>
+                    <p class=""></p>
+                    <img style="margin:0 auto;    height: 500px; " src="/images/ekart/empty Cart.gif"  alt="">
+                     
+
+                    {{/unless}}
+                </div><!-- End .col-lg-9 -->
+                
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .cart -->
+</main>
+{{!-- {{#each cartItems}}
+{{#each this.productTotal}}
+{{#if '{{this._id}}' = '{{../this.item}}'}}
+<div>{{this.total}}</div>
+{{/if}}
+{{/each}}
+{{/each}} --}}
+
+
+
+<script>
+  function removeWishlist(productId){
+    alert('haiiiii')
+    if(confirm('are you sure')){
+      $.ajax({
+      url:'/remove-wishlist/?productId='+productId,     
+      method:'get',
+      success:(response)=>{
+        if(response.status) {  
+          document.getElementById('row'+productId).style.display='none'
+        }
+       
+      }
+    })
+    }
+  }
+
+</script>

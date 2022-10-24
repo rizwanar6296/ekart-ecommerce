@@ -1,0 +1,38 @@
+<main class="main">
+    <div class="page-header text-center" style="background-image: url('/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Wallet</h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+
+    <div class="page-content">
+        <div class="container">
+            <table class="table table-wishlist table-mobile">
+                <thead>
+                    <tr>
+                        <th class="col-3 text-center">Order</th>
+                        <th class="col-3 text-center">Date</th>
+                        <th class="col-2 text-center">Total Amount</th>
+                        <th class="col-1 text-center">Status</th>
+                        <th class="col-1 text-center">Payment</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="product-col text-center">#order{{this.orderDetails._id}}</td>
+                        <td class="price-col text-center">{{this.orderDetails.date}}</td>
+                        <td class="price-col text-center">₹{{this.orderDetails.totalAmount}}</td>
+                        <td class="stock-col text-center {{statusColor this.orderDetails.status}}"
+                            id="orderStatus{{this.orderDetails._id}}">{{this.orderDetails.status}}</td>
+                        <td class="remove-col text-center ">{{this.orderDetails.paymentMethod}}</td>
+                        <td class="action-col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" style="border-radius: 20px;" data-target=".bd-example-modal-lg{{this.orderDetails._id}}">View more</button>
+                        </td>
+                    </tr>
+                  <!-- Large modal -->
+                </tbody>
+            </table><!-- End .table table-wishlist -->
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->

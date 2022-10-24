@@ -1,0 +1,114 @@
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title text-center" style="font-size: 35px ;">Coupons </h1>
+        <!-- Bordered Tabs Justified -->
+        <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
+            <li class="nav-item flex-fill" role="presentation">
+                <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab"
+                    data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home"
+                    aria-selected="true">Coupons</button>
+            </li>
+            <li class="nav-item flex-fill" role="presentation">
+                <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile"
+                    aria-selected="false">Add Coupons</button>
+            </li>
+        </ul>
+        <div class="tab-content pt-2" id="borderedTabJustifiedContent">
+            <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel"
+                aria-labelledby="home-tab">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="table-responsive mt-2">
+                                <div class="table-wrapper">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="col-12 text-center">
+                                                <th>No</th>
+                                                <th>Coupon Code</th>
+                                                <th>Description</th>
+                                                <th>Discount</th>
+                                                <th>Expiry Date</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each coupons}}
+                                           
+                                            <tr id="row{{this._id}}" style="" class="text-center">
+                                                <td>{{indexing @index}}</td>
+                                                <td>{{this.couponCode}}</td>
+                                                <td>{{this.description}}</td>
+                                                <td>{{this.discount}}%</td>
+                                                <td>{{this.expiryDate}}</td>
+                                                <td>
+                                                    <button class="btn btn-outline-danger" onclick="removeCoupon('{{this._id}}')" style="border:none;"><i
+                                                            class="ri-close-circle-fill"></i></button>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container col-6 mt-5">
+                                <form action="/admin/coupon-management" method="post">
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label">Coupon Code</label>
+                                        <input type="text" id="couponCode" name="couponCode" class="form-control"
+                                            required>          
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label">Description</label>
+                                        <input type="text" id="description" name="description" class="form-control"
+                                            required="">          
+                                    </div>
+                                    <div class="form-outline  mb-4">
+                                        <label class="form-label">Discount</label>
+                                        <input type="number" id="discount" name="discount" class="form-control"
+                                            required="">
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                         <label class="form-label">Expiry Date</label>
+                                        <input type="date" id="expiryDate" name="expiryDate"  pattern="\d{2}-\d{2}-\d{4}"  class="form-control">
+                                    </div>
+                                    <button type="submit" class="btn btn-success mt-4">Submit</button>
+                                    <a href="#" class="btn btn-primary mt-4"
+                                        style="float:right;">back</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Bordered Tabs Justified -->
+
+    </div>
+</div>
+<script>
+    function removeCoupon(couponId){
+        if(confirm('are you sure?')){
+             $.ajax({
+            url:'/admin/removeCoupon/?couponId='+couponId,
+            method:'get',
+            success:(response)=>{
+                if(response.status){
+                    document.getElementById('row'+couponId).style.display='none'
+                }
+            }
+        })
+        }
+    }
+</script>
