@@ -15,7 +15,6 @@ module.exports={
       },
     urlHistory:(req,res,next)=>{
       if(!req.xhr&&req.method!='POST'&&req.url!='/login'){
-        console.log('++urlllllllllllllllllllll'+req.url)
         req.session.url = req.url
         next()
         }else{
