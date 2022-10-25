@@ -216,9 +216,9 @@ module.exports = {
     // let productTotal=await userHelpers.getProductTotal(userId)
     let brands = await categoryHelpers.getBrands()
     userHelpers.getCartProducts(userId).then((cartItems) => {
-      let totalAmount = cartItems.reduce((sum, product) => {
+      let totalAmount = cartItems? cartItems.reduce((sum, product) => {
         return parseInt(sum) + parseInt(product.productTotal)
-      }, 0)
+      }, 0):null;
       itemCount = cartCount
       res.render('user/cart', { cartItems, itemCount, totalAmount, brands,cartCount:null })
     })
