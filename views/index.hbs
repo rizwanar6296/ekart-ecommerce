@@ -1,11 +1,23 @@
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-<style> .wishlistButton{ background-color: transparent;border:solid white 1px;border-radius: 100px } .heartIcon{ color: white; } .heartIcon:hover{ color: blue } </style>
+<style>
+    .wishlistButton {
+        background-color: transparent;
+        border: solid white 1px;
+        border-radius: 100px
+    }
 
-        <main class="main">
-            <div class="intro-slider-container mb-5">
-                <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl"
-                    data-owl-options='{
+    .heartIcon {
+        color: white;
+    }
+
+    .heartIcon:hover {
+        color: blue
+    }
+</style>
+
+<main class="main">
+    <div class="intro-slider-container mb-5">
+        <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl" data-owl-options='{
                         "dots": true,
                         "nav": false, 
                         "responsive": {
@@ -15,57 +27,59 @@
                             }
                         }
                     }'>
-                    {{#each banners}}
-                    <div class="intro-slide" style="background-image: url(/images/ekart/banners/{{this.image}});"></div>
-                    {{/each}}
-                </div><!-- End .intro-slider owl-carousel owl-simple -->
+            {{#each banners}}
+            <div class="intro-slide" style="background-image: url(/images/ekart/banners/{{this.image}});"></div>
+            {{/each}}
+        </div><!-- End .intro-slider owl-carousel owl-simple -->
 
-                <span class="slider-loader"></span><!-- End .slider-loader -->
-            </div><!-- End .intro-slider-container -->
-           
-            <div class="container">
-                <h2 class="title text-center mb-4"> Explore Popular Brands</h2><!-- End .title text-center -->
+        <span class="slider-loader"></span><!-- End .slider-loader -->
+    </div><!-- End .intro-slider-container -->
 
-                <div class="cat-blocks-container" style="overflow: hidden;">
-                    <div class="d-flex" style="margin-bottom: -50px; /* maximum width of scrollbar */ padding-bottom: 50px; /* maximum width of scrollbar */ overflow-x: scroll;">
-                        {{#each brands}}
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="/productlist-category/{{this._id}}" class="cat-block">
-                                <figure>
-                                    <span>
-                                        {{!-- <img src={{this.image}} alt="Category image"> --}}
-                                        <img src='/images/ekart/category/brands/{{this.image}}' width="100px" alt="Category image">
-                                    </span>
-                                </figure>
-                                <h3 class="cat-block-title">{{this.brand}}</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-                        {{/each}}
-                    </div><!-- End .cat-blocks-container -->
-                </div><!-- End .container -->
+    <div class="container">
+        <h2 class="title text-center mb-4"> Explore Popular Brands</h2><!-- End .title text-center -->
 
-                <div class="mb-4"></div><!-- End .mb-4 -->
+        <div class="cat-blocks-container" style="overflow: hidden;">
+            <div class="d-flex"
+                style="margin-bottom: -50px; /* maximum width of scrollbar */ padding-bottom: 50px; /* maximum width of scrollbar */ overflow-x: scroll;">
+                {{#each brands}}
+                <div class="col-6 col-sm-4 col-lg-2">
+                    <a href="/productlist-category/{{this._id}}" class="cat-block">
+                        <figure>
+                            <span>
+                                {{!-- <img src={{this.image}} alt="Category image"> --}}
+                                <img src='/images/ekart/category/brands/{{this.image}}' width="100px"
+                                    alt="Category image">
+                            </span>
+                        </figure>
+                        <h3 class="cat-block-title">{{this.brand}}</h3><!-- End .cat-block-title -->
+                    </a>
+                </div><!-- End .col-sm-4 col-lg-2 -->
+                {{/each}}
+            </div><!-- End .cat-blocks-container -->
+        </div><!-- End .container -->
+
+        <div class="mb-4"></div><!-- End .mb-4 -->
 
 
 
-                <div class="mb-3"></div><!-- End .mb-5 -->
+        <div class="mb-3"></div><!-- End .mb-5 -->
 
-                <div class="container new-arrivals">
-                    <div class="heading heading-flex mb-3">
-                        <div class="heading-left">
-                            {{#if user}}
-                            <h2 class="title">Recently Viewed Products</h2><!-- End .title -->
-                            {{else}}
-                            <h2 class="title">New Arrivals</h2><!-- End .title -->
-                            {{/if}}
-                        </div><!-- End .heading-left -->
-                    </div><!-- End .heading -->
+        <div class="container new-arrivals">
+            <div class="heading heading-flex mb-3">
+                <div class="heading-left">
+                    {{#if user}}
+                    <h2 class="title">Recently Viewed Products</h2><!-- End .title -->
+                    {{else}}
+                    <h2 class="title">New Arrivals</h2><!-- End .title -->
+                    {{/if}}
+                </div><!-- End .heading-left -->
+            </div><!-- End .heading -->
 
-                    <div class="tab-content tab-content-carousel just-action-icons-sm">
-                        <div class="tab-pane p-0 fade show active" id="new-all-tab" role="tabpanel"
-                            aria-labelledby="new-all-link">
-                            <div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow"
-                                data-toggle="owl" data-owl-options='{
+            <div class="tab-content tab-content-carousel just-action-icons-sm">
+                <div class="tab-pane p-0 fade show active" id="new-all-tab" role="tabpanel"
+                    aria-labelledby="new-all-link">
+                    <div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                        data-owl-options='{
                                 "nav": true, 
                                 "dots": true,
                                 "margin": 20,
@@ -88,264 +102,283 @@
                                     }
                                 }
                             }'>{{#if user}}
-                                {{#each recentlyViewedProducts.products}}
-                                {{#if this.visibility}}
-                                <div class="product ">
-                                    <figure class="product-media">
-                                        
-                                        <a href="/product-details/?productId={{this._id}}">
-                                           
-                                            <img src="/images/ekart/products/{{this.image.[0]}}"alt="Product image" style="width: 220px !important;height: 150px;" class="product-image">
-                                        </a>
-                                        
-                                        {{#wishlistHeartIcon this._id ../wishlist}}
-                                        <div class="product-action-vertical">
-                                           <button id="wishlistButton{{this._id}}" class="wishlistButton" onclick="addRemoveWishlist('{{../this._id}}')"><i class="fa fa-heart-o heartIcon" style="color:rgb(0, 115, 255);" id="heartIcon{{../this._id}}"  aria-hidden="true"></i></button>
-                                        </div><!-- End .product-action -->
-                                        {{else}}
-                                        <div class="product-action-vertical">
-                                           <button id="wishlistButton{{this._id}}" class="wishlistButton" onclick="addRemoveWishlist('{{../this._id}}')"><i class="fa fa-heart-o heartIcon" style="color:white;" id="heartIcon{{../this._id}}"  aria-hidden="true"></i></button>
-                                        </div><!-- End .product-action -->
-                                        {{/wishlistHeartIcon}}                                     
-                                        <div class="product-action" id="addedToCart{{this._id}}">  
-                                            {{#if this.stock}}
-                                            {{#addedToCartCheck this._id ../addedToCartItems.products}}
-                                            <a  href="/cart" style="color:green ;    margin-left: auto !important; margin-right: auto !important;padding-top: 16px;height:55px;"> <i class="fa fa-check" aria-hidden="true" ></i> Go To Cart</a>
-                                            {{else}}
-                                            <a onclick="addToCart('{{../this._id}}')" id="addTocartBtn{{../this._id}}" class="btn-product btn-cart" style="cursor:pointer;" title="Add to cart"><span>add to
-                                                    cart</span></a>
-                                            {{/addedToCartCheck}} 
-                                            {{else}}   
-                                             <p class="text-center" style="color:red ;margin-left: auto !important; margin-right: auto !important;padding-top: 16px;height:55px;"> Out of Stock</a></p>
-                                             {{/if}}
-                                            
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
+                        {{#each recentlyViewedProducts.products}}
+                        {{#if this.visibility}}
+                        <div class="product ">
+                            <figure class="product-media">
 
-                                    <div class="product-body">
-                                        {{!-- <div class="product-cat">
-                                            <a href="#">{{this.category}}</a>
-                                        </div><!-- End .product-cat --> --}}
-                                        <h3 class="product-title"><a href="/product">{{this.productName}}</a></h3>
-                                        <!-- End .product-title -->
-                                        <div class="product-price">
-                                           {{#productCategoryDiscount this.discount../brands this.brand}}       
-                                            <span class="new-price"style="color: #ef837b;"><strike style="color: #ef837b;"> ₹{{../this.price}}</strike><b style="color: green;">{{discount}}%off</b> <br> <span style="color: red;"> ₹{{calculateDiscount (parser discount) ../this.price}}</span></span>
-                                            {{else}}
-                                            <span class="new-price" style="color: red;">₹{{../this.price}}</span>
-                                            {{/productCategoryDiscount}}
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 100%;"></div>
-                                                <!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 4 Reviews )</span>
-                                        </div><!-- End .rating-container -->
+                                <a href="/product-details/?productId={{this._id}}">
 
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
-                                {{/if}}
-                                {{/each}}
+                                    <img src="/images/ekart/products/{{this.image.[0]}}" alt="Product image"
+                                        style="width: 220px !important;height: 150px;" class="product-image">
+                                </a>
 
-
+                                {{#wishlistHeartIcon this._id ../wishlist}}
+                                <div class="product-action-vertical">
+                                    <button id="wishlistButton{{this._id}}" class="wishlistButton"
+                                        onclick="addRemoveWishlist('{{../this._id}}')"><i
+                                            class="fa fa-heart-o heartIcon" style="color:rgb(0, 115, 255);"
+                                            id="heartIcon{{../this._id}}" aria-hidden="true"></i></button>
+                                </div><!-- End .product-action -->
                                 {{else}}
+                                <div class="product-action-vertical">
+                                    <button id="wishlistButton{{this._id}}" class="wishlistButton"
+                                        onclick="addRemoveWishlist('{{../this._id}}')"><i
+                                            class="fa fa-heart-o heartIcon" style="color:white;"
+                                            id="heartIcon{{../this._id}}" aria-hidden="true"></i></button>
+                                </div><!-- End .product-action -->
+                                {{/wishlistHeartIcon}}
+                                <div class="product-action" id="addedToCart{{this._id}}">
+                                    {{#if this.stock}}
+                                    {{#addedToCartCheck this._id ../addedToCartItems.products}}
+                                    <a href="/cart"
+                                        style="color:green ;    margin-left: auto !important; margin-right: auto !important;padding-top: 16px;height:55px;">
+                                        <i class="fa fa-check" aria-hidden="true"></i> Go To Cart</a>
+                                    {{else}}
+                                    <a onclick="addToCart('{{../this._id}}')" id="addTocartBtn{{../this._id}}"
+                                        class="btn-product btn-cart" style="cursor:pointer;"
+                                        title="Add to cart"><span>add to
+                                            cart</span></a>
+                                    {{/addedToCartCheck}}
+                                    {{else}}
+                                    <p class="text-center"
+                                        style="color:red ;margin-left: auto !important; margin-right: auto !important;padding-top: 16px;height:55px;">
+                                        Out of Stock</a></p>
+                                    {{/if}}
+
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                {{!-- <div class="product-cat">
+                                    <a href="#">{{this.category}}</a>
+                                </div><!-- End .product-cat --> --}}
+                                <h3 class="product-title"><a href="/product">{{this.productName}}</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    {{#productCategoryDiscount this.discount../brands this.brand}}
+                                    <span class="new-price" style="color: #ef837b;"><strike style="color: #ef837b;">
+                                            ₹{{../this.price}}</strike><b style="color: green;">{{discount}}%off</b>
+                                        <br> <span style="color: red;"> ₹{{calculateDiscount (parser discount)
+                                            ../this.price}}</span></span>
+                                    {{else}}
+                                    <span class="new-price" style="color: red;">₹{{../this.price}}</span>
+                                    {{/productCategoryDiscount}}
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 100%;"></div>
+                                        <!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 4 Reviews )</span>
+                                </div><!-- End .rating-container -->
+
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                        {{/if}}
+                        {{/each}}
 
 
-                                {{#each products}}
-                                {{#if this.visibility}}
-                                <div class="product ">
-                                    <figure class="product-media">
-                                        
-                                        <a href="/product-details/?productId={{this._id}}">
-                                           
-                                            <img src="/images/ekart/products/{{this.image.[0]}}"alt="Product image" style="width: 220px !important;height: 150px;" class="product-image">
-                                        </a>
-                                        
-                                        {{#wishlistHeartIcon this._id ../wishlist}}
-                                        <div class="product-action-vertical">
-                                           <button id="wishlistButton{{this._id}}" class="wishlistButton" onclick="addRemoveWishlist('{{../this._id}}')"><i class="fa fa-heart-o heartIcon" style="color:rgb(0, 115, 255);" id="heartIcon{{../this._id}}"  aria-hidden="true"></i></button>
-                                        </div><!-- End .product-action -->
-                                        {{else}}
-                                        <div class="product-action-vertical">
-                                           <button id="wishlistButton{{this._id}}" class="wishlistButton" onclick="addRemoveWishlist('{{../this._id}}')"><i class="fa fa-heart-o heartIcon" style="color:white;" id="heartIcon{{../this._id}}"  aria-hidden="true"></i></button>
-                                        </div><!-- End .product-action -->
-                                        {{/wishlistHeartIcon}}                                     
-                                        <div class="product-action" id="addedToCart{{this._id}}">  
-                                            {{#if this.stock}}
-                                            {{#addedToCartCheck this._id ../addedToCartItems.products}}
-                                            <a  href="/cart" style="color:green ;    margin-left: auto !important; margin-right: auto !important;"> <i class="fa fa-check" aria-hidden="true" ></i> Go To Cart</a>
-                                            {{else}}
-                                            <a onclick="addToCart('{{../this._id}}')" id="addTocartBtn{{../this._id}}" class="btn-product btn-cart" style="cursor:pointer;" title="Add to cart"><span>add to
-                                                    cart</span></a>
-                                            {{/addedToCartCheck}} 
-                                            {{else}}   
-                                             <p class="text-center" style="color:red ;margin-left: auto !important; margin-right: auto !important;"> Out of Stock</a></p>
-                                             {{/if}}
-                                            
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
-
-                                    <div class="product-body">
-                                        {{!-- <div class="product-cat">
-                                            <a href="#">{{this.category}}</a>
-                                        </div><!-- End .product-cat --> --}}
-                                        <h3 class="product-title"><a href="/product">{{this.productName}}</a></h3>
-                                        <!-- End .product-title -->
-                                        <div class="product-price">
-                                           {{#productCategoryDiscount this.discount../brands this.brand}}       
-                                            <span class="new-price"style="color: #ef837b;"><strike style="color: #ef837b;"> ₹{{../this.price}}</strike><b style="color: green;">{{discount}}%off</b> <br> <span style="color: red;"> ₹{{calculateDiscount (parser discount) ../this.price}}</span></span>
-                                            {{else}}
-                                            <span class="new-price" style="color: red;">₹{{../this.price}}</span>
-                                            {{/productCategoryDiscount}}
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 100%;"></div>
-                                                <!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 4 Reviews )</span>
-                                        </div><!-- End .rating-container -->
-
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
-                                {{/if}}
-                                {{/each}}
-                                {{/if}}
-                            </div><!-- End .owl-carousel -->
-                        </div><!-- .End .tab-pane -->
-                    </div><!-- End .tab-content -->
-
-                </div><!-- End .container -->
+                        {{else}}
 
 
+                        {{#each products}}
+                        {{#if this.visibility}}
+                        <div class="product ">
+                            <figure class="product-media">
 
-                <div class="container for-you">
-                    <div class="heading heading-flex mt-3 mb-3">
-                        <div class="heading-left">
-                            <h2 class="title">Recommendation For You</h2><!-- End .title -->
-                        </div><!-- End .heading-left -->
-                    </div><!-- End .heading -->
+                                <a href="/product-details/?productId={{this._id}}">
 
-                    <div class="products">
+                                    <img src="/images/ekart/products/{{this.image.[0]}}" alt="Product image"
+                                        style="width: 220px !important;height: 150px;" class="product-image">
+                                </a>
 
-                        <div class="row justify-content-center">
-                            {{#each products}}
-                             {{#if this.visibility}}
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <div class="product product-2">
-                                    <figure class="product-media">
-                                        <a  href="/product-details/?productId={{this._id}}">
-                                            <img src="/images/ekart/products/{{this.image.[0]}}"alt="Product image" style="width: 277px ;height: 190px;" class="product-image">
-                                        </a>
+                                {{#wishlistHeartIcon this._id ../wishlist}}
+                                <div class="product-action-vertical">
+                                    <button id="wishlistButton{{this._id}}" class="wishlistButton"
+                                        onclick="addRemoveWishlist('{{../this._id}}')"><i
+                                            class="fa fa-heart-o heartIcon" style="color:rgb(0, 115, 255);"
+                                            id="heartIcon{{../this._id}}" aria-hidden="true"></i></button>
+                                </div><!-- End .product-action -->
+                                {{else}}
+                                <div class="product-action-vertical">
+                                    <button id="wishlistButton{{this._id}}" class="wishlistButton"
+                                        onclick="addRemoveWishlist('{{../this._id}}')"><i
+                                            class="fa fa-heart-o heartIcon" style="color:white;"
+                                            id="heartIcon{{../this._id}}" aria-hidden="true"></i></button>
+                                </div><!-- End .product-action -->
+                                {{/wishlistHeartIcon}}
+                                <div class="product-action" id="addedToCart{{this._id}}">
+                                    {{#if this.stock}}
+                                    {{#addedToCartCheck this._id ../addedToCartItems.products}}
+                                    <a href="/cart"
+                                        style="color:green ;    margin-left: auto !important; margin-right: auto !important;">
+                                        <i class="fa fa-check" aria-hidden="true"></i> Go To Cart</a>
+                                    {{else}}
+                                    <a onclick="addToCart('{{../this._id}}')" id="addTocartBtn{{../this._id}}"
+                                        class="btn-product btn-cart" style="cursor:pointer;"
+                                        title="Add to cart"><span>add to
+                                            cart</span></a>
+                                    {{/addedToCartCheck}}
+                                    {{else}}
+                                    <p class="text-center"
+                                        style="color:red ;margin-left: auto !important; margin-right: auto !important;">
+                                        Out of Stock</a></p>
+                                    {{/if}}
 
-                                        {{#wishlistHeartIcon this._id ../wishlist}}
-                                        <div class="product-action-vertical">
-                                           <button id="wishlistButton{{../this._id}}" class="wishlistButton" onclick="addRemoveWishlist('{{../this._id}}')"><i class="fa fa-heart-o heartIcon" style="color:rgb(0, 115, 255);" id="heartIcon2{{../this._id}}"  aria-hidden="true"></i></button>
-                                        </div><!-- End .product-action -->
-                                        {{else}}
-                                        <div class="product-action-vertical">
-                                           <button id="wishlistButton{{../this._id}}" class="wishlistButton" onclick="addRemoveWishlist('{{../this._id}}')"><i class="fa fa-heart-o heartIcon" style="color:white;" id="heartIcon2{{../this._id}}"  aria-hidden="true"></i></button>
-                                        </div><!-- End .product-action -->
-                                        {{/wishlistHeartIcon}}      
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
 
-                                        <div class="product-action" id="addedToCart2{{this._id}}">  
-                                            {{#if this.stock}}
-                                            {{#addedToCartCheck this._id ../addedToCartItems.products}}
-                                            <a  href="/cart" style="color:green ;    margin-left: auto !important; margin-right: auto !important;"> <i class="fa fa-check" aria-hidden="true" ></i> Go To Cart</a>
-                                            {{else}}
-                                            <a onclick="addToCart('{{../this._id}}')" id="addTocartBtn{{../this._id}}" class="btn-product btn-cart" style="cursor:pointer;" title="Add to cart"><span>add to
-                                                    cart</span></a>
-                                            {{/addedToCartCheck}} 
-                                            {{else}}   
-                                             <p class="text-center" style="color:red ;margin-left: auto !important; margin-right: auto !important;"> Out of Stock</a></p>
-                                             {{/if}}
-                                            
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                {{!-- <div class="product-cat">
+                                    <a href="#">{{this.category}}</a>
+                                </div><!-- End .product-cat --> --}}
+                                <h3 class="product-title"><a href="/product">{{this.productName}}</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    {{#productCategoryDiscount this.discount../brands this.brand}}
+                                    <span class="new-price" style="color: #ef837b;"><strike style="color: #ef837b;">
+                                            ₹{{../this.price}}</strike><b style="color: green;">{{discount}}%off</b>
+                                        <br> <span style="color: red;"> ₹{{calculateDiscount (parser discount)
+                                            ../this.price}}</span></span>
+                                    {{else}}
+                                    <span class="new-price" style="color: red;">₹{{../this.price}}</span>
+                                    {{/productCategoryDiscount}}
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 100%;"></div>
+                                        <!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 4 Reviews )</span>
+                                </div><!-- End .rating-container -->
 
-                                    <div class="product-body">
-                                        {{!-- <div class="product-cat">
-                                            <a href="#">{{this.category}}</a>
-                                        </div><!-- End .product-cat --> --}}
-                                        <h3 class="product-title"><a href="product.html">{{this.productName}}</a></h3>
-                                        <!-- End .product-title -->
-                                        <div class="product-price">
-                                           {{#productCategoryDiscount this.discount ../brands this.brand}}       
-                                            <span class="new-price"style="color: #ef837b;"><strike style="color: #ef837b;"> ₹{{../this.price}}</strike><b style="color: green;">{{discount}}%off</b> <br> <span style="color: red;"> ₹{{calculateDiscount discount ../this.price}}</span></span>
-                                            {{else}}
-                                            <span class="new-price" style="color: red;">₹{{../this.price}}</span>
-                                            {{/productCategoryDiscount}}
-                                            
-                                            {{!-- <span class="old-price">Was {{this.newPrice}}</span> --}}
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 40%;"></div>
-                                                <!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 4 Reviews )</span>
-                                        </div><!-- End .rating-container -->
-
-                                        <div class="product-nav product-nav-dots">
-                                            <a href="#" class="active" style="background: #666666;"><span
-                                                    class="sr-only">Color name</span></a>
-                                            <a href="#" style="background: #ff887f;"><span class="sr-only">Color
-                                                    name</span></a>
-                                            <a href="#" style="background: #6699cc;"><span class="sr-only">Color
-                                                    name</span></a>
-                                            <a href="#" style="background: #f3dbc1;"><span class="sr-only">Color
-                                                    name</span></a>
-                                            <a href="#" style="background: #eaeaec;"><span class="sr-only">Color
-                                                    name</span></a>
-                                        </div><!-- End .product-nav -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
-
-                            </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-                            {{/if}}
-                            {{/each}}
-                            
-
-                        </div><!-- End .row -->
-
-                    </div><!-- End .products -->
-
-                </div><!-- End .container -->
-                
-
-                <div class="mb-4"></div><!-- End .mb-4 -->
-
-                <div class="container">
-                    <hr class="mb-0">
-                </div><!-- End .container -->
-                
-        </main><!-- End .main --> 
-        <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
-
-    <div class="mobile-menu-container mobile-menu-light">
-        <div class="mobile-menu-wrapper">
-            <span class="mobile-menu-close"><i class="icon-close"></i></span>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li class="active">
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li class="active">
-                                <a href="index.html">Products</a>
-                            </li>
-                            <li class="active">
-                                <a href="index.html">Home</a>
-                            </li>
-                        </ul>
-                        <a href="" class="btn btn-primary">login</a>
-                    </nav><!-- End .mobile-nav -->
-                </div><!-- .End .tab-pane -->   
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                        {{/if}}
+                        {{/each}}
+                        {{/if}}
+                    </div><!-- End .owl-carousel -->
+                </div><!-- .End .tab-pane -->
             </div><!-- End .tab-content -->
-        </div><!-- End .mobile-menu-wrapper -->
-    </div><!-- End .mobile-menu-container -->
-    
- <script src="/js/userLogin/indexPage.js"></script>
+
+        </div><!-- End .container -->
+
+
+
+        <div class="container for-you">
+            <div class="heading heading-flex mt-3 mb-3">
+                <div class="heading-left">
+                    <h2 class="title">Recommendation For You</h2><!-- End .title -->
+                </div><!-- End .heading-left -->
+            </div><!-- End .heading -->
+
+            <div class="products">
+
+                <div class="row justify-content-center">
+                    {{#each products}}
+                    {{#if this.visibility}}
+                    <div class="ml-4">
+                        <div class="product product-2">
+                            <figure class="product-media">
+                                <a href="/product-details/?productId={{this._id}}">
+                                    <img src="/images/ekart/products/{{this.image.[0]}}" alt="Product image"
+                                        style="width: 277px ;height: 190px;" class="product-image">
+                                </a>
+
+                                {{#wishlistHeartIcon this._id ../wishlist}}
+                                <div class="product-action-vertical">
+                                    <button id="wishlistButton{{../this._id}}" class="wishlistButton"
+                                        onclick="addRemoveWishlist('{{../this._id}}')"><i
+                                            class="fa fa-heart-o heartIcon" style="color:rgb(0, 115, 255);"
+                                            id="heartIcon2{{../this._id}}" aria-hidden="true"></i></button>
+                                </div><!-- End .product-action -->
+                                {{else}}
+                                <div class="product-action-vertical">
+                                    <button id="wishlistButton{{../this._id}}" class="wishlistButton"
+                                        onclick="addRemoveWishlist('{{../this._id}}')"><i
+                                            class="fa fa-heart-o heartIcon" style="color:white;"
+                                            id="heartIcon2{{../this._id}}" aria-hidden="true"></i></button>
+                                </div><!-- End .product-action -->
+                                {{/wishlistHeartIcon}}
+
+                                <div class="product-action" id="addedToCart2{{this._id}}">
+                                    {{#if this.stock}}
+                                    {{#addedToCartCheck this._id ../addedToCartItems.products}}
+                                    <a href="/cart"
+                                        style="color:green ;    margin-left: auto !important; margin-right: auto !important;">
+                                        <i class="fa fa-check" aria-hidden="true"></i> Go To Cart</a>
+                                    {{else}}
+                                    <a onclick="addToCart('{{../this._id}}')" id="addTocartBtn{{../this._id}}"
+                                        class="btn-product btn-cart" style="cursor:pointer;"
+                                        title="Add to cart"><span>add to
+                                            cart</span></a>
+                                    {{/addedToCartCheck}}
+                                    {{else}}
+                                    <p class="text-center"
+                                        style="color:red ;margin-left: auto !important; margin-right: auto !important;">
+                                        Out of Stock</a></p>
+                                    {{/if}}
+
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                {{!-- <div class="product-cat">
+                                    <a href="#">{{this.category}}</a>
+                                </div><!-- End .product-cat --> --}}
+                                <h3 class="product-title"><a href="product.html">{{this.productName}}</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    {{#productCategoryDiscount this.discount ../brands this.brand}}
+                                    <span class="new-price" style="color: #ef837b;"><strike style="color: #ef837b;">
+                                            ₹{{../this.price}}</strike><b style="color: green;">{{discount}}%off</b>
+                                        <br> <span style="color: red;"> ₹{{calculateDiscount discount
+                                            ../this.price}}</span></span>
+                                    {{else}}
+                                    <span class="new-price" style="color: red;">₹{{../this.price}}</span>
+                                    {{/productCategoryDiscount}}
+
+                                    {{!-- <span class="old-price">Was {{this.newPrice}}</span> --}}
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 40%;"></div>
+                                        <!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 4 Reviews )</span>
+                                </div><!-- End .rating-container -->
+
+                                <div class="product-nav product-nav-dots">
+                                    <a href="#" class="active" style="background: #666666;"><span class="sr-only">Color
+                                            name</span></a>
+                                    <a href="#" style="background: #ff887f;"><span class="sr-only">Color
+                                            name</span></a>
+                                    <a href="#" style="background: #6699cc;"><span class="sr-only">Color
+                                            name</span></a>
+                                    <a href="#" style="background: #f3dbc1;"><span class="sr-only">Color
+                                            name</span></a>
+                                    <a href="#" style="background: #eaeaec;"><span class="sr-only">Color
+                                            name</span></a>
+                                </div><!-- End .product-nav -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                    </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                    {{/if}}
+                    {{/each}}
+
+
+                </div><!-- End .row -->
+
+            </div><!-- End .products -->
+
+        </div><!-- End .container --> 
+
+
+</main><!-- End .main -->
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+
+<script src="/js/userLogin/indexPage.js"></script>

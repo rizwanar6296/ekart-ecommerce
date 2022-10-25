@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- molla/product.html  22 Nov 2019 09:54:50 GMT -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>EKART</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/images/ekart/logo.png" rel="icon">
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
+
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Main CSS File -->
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/skins/skin-demo-4.css">
+    <link rel="stylesheet" href="/css/demos/demo-4.css">
+    <!-- Font Awesome -->
+    <!-- MDB -->
+</head>
+<header class="header header-intro-clearance header-4">
+    <!-- End .header-top -->
+
+    <div class="header-middle">
+        <div class="container">
+            <div class="header-left">
+                <button class="mobile-menu-toggler active">
+                    <span class="sr-only">Toggle mobile menu</span>
+                    <i class="icon-bars"></i>
+                </button>
+
+                <a href="index.html" class="logo">
+                    <img src="assets/images/demos/demo-4/logo.png" alt="Molla Logo" width="105" height="25">
+                </a>
+            </div><!-- End .header-left -->
+        </div><!-- End .container -->
+    </div>
+    </div>
+    </div><!-- End .header-bottom -->
+</header>
+
+<body>
+
+    <div class="page-wrapper">
+        <header class="header header-intro-clearance header-4">
+            <div class="header-bottom sticky-header">
+                <div class="container">
+
+                    <div>
+
+                        <nav class="main-nav">
+
+                            <ul class="menu sf-arrows">
+                                <li style="height: 100px;width: 100px;">
+                                    <a href="/" class="my-auto">
+                                        <img style="padding-top: 10px;" src="/images/ekart/logo.png">
+                                    </a>
+                                </li>
+
+                                <li class="megamenu-container">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <a href="/product-list/?page=1">Products</a>
+                                </li>
+                                <li>
+                                    <a href="/orders">orders</a>
+                                </li>
+                                {{!-- <li>
+                                    <a href="/practice">practice</a>
+                                </li>
+                                <li>
+                                    <a href="#">Elements</a>
+                                </li> --}}
+                            </ul><!-- End .menu -->
+                        </nav><!-- End .main-nav -->
+
+                    </div>
+                    <div class="col-6" style="margin: auto;float: inline-end;">
+                        <div class="header-search header-search-extended header-search-visible d-none d-lg-block"
+                            style="z-index:4;">
+                            <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                            <div class="header-search-wrapper search-wrapper-wide" style=" background-color: white; ">
+                                <label for="q" class="sr-only">Search</label>
+                                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                                <input type="search" class="form-control" name="q" id="q"
+                                    style="color: black; background-color:white; " onkeyup="sendData(this)"
+                                    placeholder="Search product ..." required="">
+                            </div><!-- End .header-search-wrapper -->
+                        </div><!-- End .header-search -->
+                        <section
+                            style="border-radius: 5px 5px 10px 11px; position: absolute; background-color:white; width: 97.3%; margin-top: -45px; z-index: 3; margin-left: 1px; flex-direction: column; overflow: hidden;">
+                            <div id="searchResults"
+                                style="    border: solid #e0d9d9 1px; margin-right: -16px; padding-top: 30px; overflow-y: scroll; display: block; max-height: 400px; display: none;">
+                            </div>
+                        </section>
+                    </div><!-- End .header-center -->
+                    <div class="header-right">
+                        <div class="wishlist">
+                            <a href="/wishlist" title="Wishlist">
+                                <div class="icon">
+                                    <i class="icon-heart-o"><span class="badge badge-primary"
+                                            style="width:15px;border-radius: 10px;"
+                                            id="wishList-count">{{wishlistCount}}</span></i>
+                                </div>
+                                <p>Wishlist</p>
+                            </a>
+                        </div><!-- End .compare-dropdown -->
+
+                        <div class="dropdown cart-dropdown mr-5">
+                            <a href="/cart" class="dropdown-toggle">
+                                <div class="icon">
+                                    <i class="icon-shopping-cart cartCount"><span class="badge badge-primary"
+                                            style="border-radius: 10px;" id="cart-count">{{cartCount}}</span></i>
+                                </div>
+                                <p>Cart</p>
+                            </a>
+                        </div>
+
+
+
+                        {{#if userLoggedIn}}
+                        <div class="dropdown">
+                            <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                style="cursor:pointer;">
+                                <div class="icon text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                        class="bi bi-person mt-1" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                    </svg>
+                                </div>
+                                <p>{{userName}}</p>
+                            </a>
+
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 17px;;">
+                                <li><a class="dropdown-item" href="/profile"><i class="fa fa-user"
+                                            aria-hidden="true"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="/logout"><i class="fa fa-power-off"
+                                            aria-hidden="true"></i>Logout</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </div>
+                        {{else}}
+
+                        <a href="/login" type="button" class="btn btn-dark btn-round">Login</a>
+
+                        {{/if}}
+
+
+
+                    </div><!-- End .header-right -->
+                </div><!-- End .container -->
+            </div><!-- End .header-bottom -->
+
+        </header><!-- End .header -->
+
+        <body>
+
+
+
+            {{{body}}}
+
+            <footer class="footer">
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget widget-about">
+                                    <img src="/images/ekart/logo.png" width="100px" height="10px">
+                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu
+                                        vulputate
+                                        magna eros eu erat. </p>
+
+                                    <div class="widget-call">
+                                        <i class="icon-phone"></i>
+                                        Got Question? Call us 24/7
+                                        <a href="tel:#">+0123 456 789</a>
+                                    </div><!-- End .widget-call -->
+                                </div><!-- End .widget about-widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+                                    <ul class="widget-list">
+                                        <li><a href="about.html">About Ekart</a></li>
+                                        <li><a href="#">Our Services</a></li>
+                                        <li><a href="#">How to shop on Ekart</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="contact.html">Contact us</a></li>
+                                    </ul><!-- End .widget-list -->
+                                </div><!-- End .widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+                                    <ul class="widget-list">
+                                        <li><a href="#">Payment Methods</a></li>
+                                        <li><a href="#">Money-back guarantee!</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Shipping</a></li>
+                                        <li><a href="#">Terms and conditions</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                    </ul><!-- End .widget-list -->
+                                </div><!-- End .widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+                                    <ul class="widget-list">
+                                        <li><a href="#">Sign In</a></li>
+                                        <li><a href="cart.html">View Cart</a></li>
+                                        <li><a href="#">My Wishlist</a></li>
+                                        <li><a href="#">Track My Order</a></li>
+                                        <li><a href="#">Help</a></li>
+                                    </ul><!-- End .widget-list -->
+                                </div><!-- End .widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .footer-middle -->
+
+                <div class="footer-bottom">
+                    <div class="container">
+                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p>
+                        <!-- End .footer-copyright -->
+                        <figure class="footer-payments">
+                            <img src="/images/payments.png" alt="Payment methods" width="272" height="20">
+                        </figure><!-- End .footer-payments -->
+                    </div><!-- End .container -->
+                </div><!-- End .footer-bottom -->
+            </footer><!-- End .footer -->
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+
+
+    <!-- Plugins JS File -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.hoverIntent.min.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/superfish.min.js"></script>
+
+    <script src="/js/bootstrap-input-spinner.js"></script>
+    <script src="/js/jquery.elevateZoom.min.js"></script>
+    <script src="/js/bootstrap-input-spinner.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <!-- Main JS File -->
+
+    <script src="/js/demos/demo-4.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- MDB -->
+
+
+    <!-- MDB -->
+
+</body>
+<script>
+    function sendData(e) {
+        const searchResutls = document.getElementById('searchResults')
+        let match = e.value.match(/^[a-zA-Z ]*/)
+        let match2 = e.value.match(/\s*/)
+        if (match2[0] === e.value) {
+            searchResutls.innerHTML = ''
+            searchResutls.style.display = 'none'
+            return
+        }
+        if (match[0] === e.value) {
+            searchResutls.style.display = 'block'
+            fetch('/search', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 'payload': e.value })
+            }).then(res => res.json()).then(data => {
+                let payload = data.payload
+                searchResutls.innerHTML = ''
+                if (payload.length < 1) {
+
+                    searchResutls.innerHTML = '<p>Sorry nothing found</p>'
+                    return
+                }
+                payload.forEach((item, index) => {
+                    console.log('===================', item)
+                    if (index > 0) searchResutls.innerHTML += '<hr>'
+                    searchResutls.innerHTML += `<a  href="/product-details?productId=${item._id}"><img src="/images/ekart/products/${item.image[0]}" style="height:50px;width:60px;display:inline;margin-left:50px"alt=""></a>`
+                    searchResutls.innerHTML += `<a  href="/product-details?productId=${item._id}" style="display:inline;color:black">${item.productName} ${item.description}</a>`
+                })
+                return
+            })
+        }
+
+    }
+</script>

@@ -78,19 +78,6 @@ function addToWishlist(productId){
 	})
 }
 
-// var myHeaders = new Headers();
-// myHeaders.append("apikey", "AG4KpHC8vhvh7NCAcU7sUganAWRsyH1n");
-
-// var requestOptions = {
-//   method: 'GET',
-//   redirect: 'follow',
-//   headers: myHeaders
-// };
-// fetch('https://api.coindesk.com/v1/bpi/currentprice.json',{
-// 	method:'get',
-// })
-// .then((response) => response.json())
-// .then((data) => console.log(data));
 
 
 function removeWishlist(productId){
