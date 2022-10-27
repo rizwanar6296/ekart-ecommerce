@@ -11,7 +11,7 @@ module.exports.connect=function(done){
         state.db=data.db(dbname)
         done()
        
-    })
+    }) 
     
 }    
 module.exports.get=function(){

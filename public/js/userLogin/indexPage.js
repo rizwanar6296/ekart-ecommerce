@@ -48,7 +48,7 @@ function addToCart(productId){
 //<div  class="text-center" style="color:green ;"> <i class="fa fa-check" aria-hidden="true" ></i> added</a></div>
 function addRemoveWishlist(productId){
 	if(productId){
-		if(document.getElementById('heartIcon'+productId).style.color=='white'){
+		if(document.getElementById('heartIcon2'+productId).style.color=='white'){
 			addToWishlist(productId)
 		}else{
 			removeWishlist(productId)
@@ -87,7 +87,9 @@ function removeWishlist(productId){
 	success:(response)=>{
 	  if(response.status) {  
 		$('#wishList-count').html(response.wishlistCount)
-		document.getElementById('heartIcon'+productId).style.color='white'
+		if(document.getElementById('heartIcon'+productId)){
+			document.getElementById('heartIcon'+productId).style.color='white'
+		}
 		document.getElementById('heartIcon2'+productId).style.color='white'
 	  }else{
 		location.href='/login'
