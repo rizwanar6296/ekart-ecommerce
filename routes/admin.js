@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 let { productUpload, bannerUpload, brandUpload }=require('../multer')
-const { layout, getAdminLogin, getAdminDashboard, getBlockUser, getUnBlockUser, postAddProduct, getEditProduct, postEditProduct, getDeleteProduct, getBlockVisibility, getUnblockVisibility, postAdminLogin, getOrderManagement, postChangeStatus, getCategoryManagement, postAddBrand, postEditBrand, getDeleteBrand, postAddType, getBannerManagement, postAddBanner, postEditBanner, getDeleteBanner, getReturnManagement, postReturnApproved, getSalesReport, getCouponManagement, postCouponManagement, getRemoveCoupon, getLogout, getAddProduct, getProductDetails, getUserDetails,adminValidate } = require('../controllers/adminControllers');
+const { layout, getAdminLogin, getAdminDashboard, getBlockUser, getUnBlockUser, postAddProduct, getEditProduct, postEditProduct, getDeleteProduct, getBlockVisibility, getUnblockVisibility, postAdminLogin, getOrderManagement, postChangeStatus, getCategoryManagement, postAddBrand, postEditBrand, getDeleteBrand, postAddType, getBannerManagement, postAddBanner, postEditBanner, getDeleteBanner, getReturnManagement, postReturnApproved, getSalesReport, getCouponManagement, postCouponManagement, getRemoveCoupon, getLogout, getAddProduct, getProductDetails, getUserDetails,adminValidate, getRefund } = require('../controllers/adminControllers');
 
 
 
@@ -89,6 +89,8 @@ router.get('/delete-banner/:id', adminValidate, getDeleteBanner)
 router.get('/return-management', adminValidate, getReturnManagement)
 
  router.post('/return-approved/:returnId/:orderId', adminValidate, postReturnApproved)
+
+router.get('/refund',adminValidate,getRefund)
 
 //================================return-management=======================================
 

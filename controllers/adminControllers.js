@@ -42,6 +42,7 @@ module.exports={
     getAdminDashboard:async function (req, res) {
         let {weeklySalesReport,monthlySalesReport,yearlySalesReport} = await adminHelpers.getTotalReportGraph()
          let paymentCount=await adminHelpers.getAllPaymentCount()
+         await adminHelpers.getDailyCodSales()
         res.render('admin/dashboard',{weeklySalesReport,monthlySalesReport,yearlySalesReport,paymentCount})
     },
     getUserDetails:function (req, res) {
@@ -241,6 +242,11 @@ module.exports={
         }else{
             res.redirect('/admin/return-management')
         }
+      },
+      getRefund:async function (req, res) {
+        const orderId=  req.query.orderId
+        await adminHelpers.creditRefund(orderId)
+        res.redirect('/admin/return-management')
       },
       getSalesReport:async function (req, res) {
         let {weeklySalesReport,monthlySalesReport,yearlySalesReport} = await adminHelpers.getTotalReportGraph()

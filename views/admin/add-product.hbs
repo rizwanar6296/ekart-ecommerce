@@ -59,7 +59,6 @@
     }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
 <div class="container col-6 mt-5">
     <h2 class="text-center mb-5">Add Product</h2>
     <form action="/admin/add-product" enctype="multipart/form-data" method="post">
@@ -183,9 +182,9 @@
     input.addEventListener('change', () => {
         // Getting image file object from the input variable
         const img_data = []
-        const imagebox = []
-        const crop_btn = []
-        const confirm_btn = []
+       // const imagebox = []
+       // const crop_btn = []
+       // const confirm_btn = []
         const url = []
         const length= input.files.length
         for (i = 0; i < length; i++) {
@@ -197,6 +196,7 @@
         }
         
         img_data.forEach((image_data, i) => {
+            
             url[i] = URL.createObjectURL(image_data)
         })
         // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
@@ -211,10 +211,10 @@
   
 
         // Displaying the image box
-        for(i=0;i<length;i++){
-            document.getElementById('image-box'+i).style.display= 'block'
-             document.getElementById('crop-btn'+i).style.display= 'block'
-        }
+        //for(i=0;i<length;i++){
+      //      document.getElementById('image-box'+i).style.display= 'block'
+      //       document.getElementById('crop-btn'+i).style.display= 'block'
+      //  }
        
 
         for(i=0;i<length;i++){
@@ -252,19 +252,18 @@
                     // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
                     let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
                     // Create a new container
-
                     // Add the cropped image file to the container
                     container.items.add(file);
 
                     fileInputElement.files = container.files
-
                     // Replace the original image file with the new cropped image file
                   // Hide the cropper box
                     imagebox.style.display = 'none'
                     // Hide the crop button
                     crop_btn.style.display = 'none'
                 });
-            });
+            }); 
         }
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>

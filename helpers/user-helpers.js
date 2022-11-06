@@ -10,13 +10,14 @@ module.exports = {
     doSignUp: (userData) => {
         return new Promise((resolve, reject) => {
             let response = {}
-            // userData.status=true
+            // userData.status=true        
             db.get().collection(collection.USER_COLLECTION).findOne({ email: userData.email }).then(async (data) => {
                 if (data) {
                     response.alreadyUser = 'already same user with email id'
                     resolve(response)
                 } else {
                     userData.status = true
+                    userData.wallet= 0;
                     userData.password = await bcrypt.hash(userData.password, 10)
                     db.get().collection(collection.USER_COLLECTION).insertOne(userData).then((data) => {
                         userData._id = data.insertedId
@@ -783,6 +784,12 @@ module.exports = {
             await db.get().collection(collection.USER_COLLECTION).updateOne({_id:ObjectId(userId)},{$unset:{coupon:1}})
             resolve()
         })
+    },
+    getWalletAmount:(userId)=>{
+        return new Promise(async(resolve, reject) => {
+       let user=await db.get().collection(collection.USER_COLLECTION).findOne({_id:ObjectId(userId)})
+            resolve(user.wallet)
+        })
     }
-
+ 
 }

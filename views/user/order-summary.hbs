@@ -1,13 +1,17 @@
 <link rel="stylesheet" href="/css/user-css/order-summary.css">
+<main class="main">
+
+
 <section class="h-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-12">
         <div class="card" style="border-radius: 10px;">
           <div class="card-header px-4 py-5">
-            <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">{{orderDetails.firstName}}</span>!</h5>
+            <h5 class="text-muted mb-0">Thanks for your Order, <span
+                style="color: #a8729a;">{{orderDetails.firstName}}</span>!</h5>
           </div>
-          <div >
+          <div>
             <h1 class='d-flex justify-content-center align-items-center' style="color: #585858;">Order Summary</h1>
           </div>
           <div class="card-body p-4">
@@ -17,34 +21,37 @@
             <div class="card shadow-0 border mb-4">
               <div class="card-body">
                 <div class="row">
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Product Image</div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Product Name</div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Price</div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Quantity</div>
-                    
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Payment Type</div>
-                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Status</div>              
-                </div>
-              
-                {{#each orderDetails.orderProductDetails}}
-                 <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-                <div class="row">   
-                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center ">
-                    <img src="/images/ekart/products/{{this.product.image.[0]}}"
-                      class="img-fluid" width="80px" alt="Phone">
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Product Image
                   </div>
-                 
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Product Name
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Price</div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Quantity</div>
+
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Payment Type
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center mb-2">Status</div>
+                </div>
+
+                {{#each orderDetails.orderProductDetails}}
+                <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                <div class="row">
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center ">
+                    <img src="/images/ekart/products/{{this.product.image.[0]}}" class="img-fluid" width="80px"
+                      alt="Phone">
+                  </div>
+
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0">{{this.product.productName}}</p>
                   </div>
-                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0 small">₹{{calculateDiscount this.discount this.product.price}}</p>
                   </div>
-                  
+
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0 small">{{this.quantity}}</p>
                   </div>
-                         
+
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0 small">{{../orderDetails.paymentMethod}}</p>
                   </div>
@@ -52,38 +59,43 @@
                     <p class="text-muted mb-0 small">{{../orderDetails.status}}</p>
                   </div>
                 </div>
-               
-                {{/each}}   
-                
+
+                {{/each}}
+
               </div>
             </div>
-            
+
 
             <div class="d-flex justify-content-between pt-2">
               <p class="fw-bold mb-0">Order Details</p>
-               {{#if orderDetails.coupon}}
-              <p class="col-2 text-muted mb-0"><span class="font-weight-bold "> Disccount : </span><span class="float-right col-6"> {{orderDetails.coupon.discount}}%</span></p>
+              {{#if orderDetails.coupon}}
+              <p class="col-2 text-muted mb-0"><span class="font-weight-bold "> Disccount : </span><span
+                  class="float-right col-6"> {{orderDetails.coupon.discount}}%</span></p>
               {{else}}
-              <p class="col-2 text-muted mb-0"><span class="font-weight-bold "> Disccount : </span><span class="float-right col-6"> 0%</span></p> 
+              <p class="col-2 text-muted mb-0"><span class="font-weight-bold "> Disccount : </span><span
+                  class="float-right col-6"> 0%</span></p>
               {{/if}}
             </div>
 
-           
+
             <div class="d-flex justify-content-between">
               <p class="text-muted mb-0">Purchase Date : {{orderDetails.date}}</p>
-              <p class="col-2 text-muted mb-0"><span class="font-weight-bold ml-5">Total</span><span class="float-right col-6"> ₹{{orderDetails.totalAmount}}</span></p>
+              <p class="col-2 text-muted mb-0"><span class="font-weight-bold ml-5">Total</span><span
+                  class="float-right col-6"> ₹{{orderDetails.totalAmount}}</span></p>
             </div>
 
-            
-              
+
+
             <div>
-              <p>Delivery Address: {{orderDetails.address.houseName}},{{orderDetails.address.streetAdress}}</p> 
-               <p> <span style="margin-left:120px;"></span> {{orderDetails.address.city}},{{orderDetails.address.state}}</p> 
-               <p> <span style="margin-left:120px;"></span> Pincode:{{orderDetails.address.pincode}},Phone:{{orderDetails.phoneNumber}}</p> 
-                
+              <p>Delivery Address: {{orderDetails.address.houseName}},{{orderDetails.address.streetAdress}}</p>
+              <p> <span style="margin-left:120px;"></span> {{orderDetails.address.city}},{{orderDetails.address.state}}
+              </p>
+              <p> <span style="margin-left:120px;"></span>
+                Pincode:{{orderDetails.address.pincode}},Phone:{{orderDetails.phoneNumber}}</p>
+
             </div>
 
-            
+
 
           </div>
           <div class="card-footer border-0 px-4 py-5"
@@ -91,12 +103,10 @@
             <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
               paid: <span class="h2 mb-0 ms-2">₹{{orderDetails.totalAmount}}</span></h5>
           </div>
-     
+
         </div>
       </div>
     </div>
   </div>
 </section>
-<script>
-  console.log({{orderDetails}})
-</script>
+</main>

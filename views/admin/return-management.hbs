@@ -39,9 +39,17 @@
                             </select>
                              <button type="submit" class="btn btn-success" style="padding: 0px; height: 25px; width: 69px;font-size: 15px;">submit</button>
                             </form>
-                            {{else}}
+                            {{/ifEquals}}
+
+                            {{#ifEquals this.return.status 'return-approved' false}}
+
+                            <h6 class="badge bg-success" style="font-size: 15px;">{{../this.return.status}}</h6>
+                            <a class="badge bg-success" href="/admin/refund/?orderId={{../this.order._id}}"  style="font-size: 15px;">$Refund</a>
+                            {{/ifEquals}}
+                            {{#ifEquals this.return.status 'Refund-Credited' false}}
                             <h6 class="badge bg-success" style="font-size: 15px;">{{../this.return.status}}</h6>
                             {{/ifEquals}}
+                           
                         </td>
                         <td>
                             <button type="button" class="btn btn-primary" data-toggle="modal"

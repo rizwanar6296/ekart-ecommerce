@@ -271,9 +271,11 @@ module.exports = {
     userHelpers.deleteAddress(userId, addressId).then(() => {
       res.redirect('/profile')
     })
-  },
-  getWallet: (req, res) => {
-    res.render('user/wallet')
+  },  
+  getWallet: async(req, res) => {
+    let userId = req.session.user._id
+    let walletAmount = await userHelpers.getWalletAmount(userId)
+    res.render('user/wallet',{walletAmount})
   },
   getAddToCart: function (req, res, next) {
     console.log("add-to cart req")
@@ -394,11 +396,11 @@ module.exports = {
     userDetails.userId = userId
     userDetails.payment = req.body.payment
     userHelpers.placeOrder(userDetails, products, totalAmount, cartId).then(async (orderId) => {
-
+      
       if (userDetails.payment === 'COD') {
         await userHelpers.deleteCart(userId, orderId)
         await userHelpers.decrementStock(orderId)
-        await userHelpers.deleteCoupon(userId)
+        //await userHelpers.deleteCoupon(userId)
         res.json({ codSuccess: true, orderId })
       } else if (userDetails.payment === 'razorpay') {
         userHelpers.generateRazorpay(orderId, totalAmount).then((response) => {
@@ -457,9 +459,10 @@ module.exports = {
 
   },
   getOrderSummary: async function (req, res, next) {
+    let userId = req.session.user._id
     let orderId = req.query.orderId
     let orderProductDetails = await userHelpers.getOrderSummary(orderId)
-    let userId = req.session.user._id
+    await userHelpers.deleteCoupon(userId)
     let orderDetails = await userHelpers.orderDetails(orderId)
     delete orderDetails.products
     orderDetails.orderProductDetails = orderProductDetails

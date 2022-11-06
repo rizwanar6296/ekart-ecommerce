@@ -1,6 +1,7 @@
 const db = require('../config/connections')
 const collection = require('../config/collections')
 const { response } = require('express')
+const { resolve } = require('path')
 const objectId=require('mongodb').ObjectId
 
 module.exports={
@@ -360,6 +361,39 @@ module.exports={
                resolve(data[0])
                 
             })
+            })
+        },
+        getDailyCodSales:()=>{
+            return new Promise(async(resolve, reject) => {
+                let COD= await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+                 $match : { "paymentMethod":'COD' }},
+                { $group:{_id:{day:{$dayOfMonth:'$_id'}},totalAmount:{$sum:'$totalAmount'},count:{$sum:1}} },
+                { $sort : {"_id.day" : 1} }             
+                    ]).toArray()
+                let paypal =await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+                    $match : { "paymentMethod":'paypal' }},
+                   { $group:{_id:{day:{$dayOfMonth:'$_id'}},totalAmount:{$sum:'$totalAmount'},count:{$sum:1}} },
+                   { $sort : {"_id.day" : 1} }             
+                       ]).toArray()
+                let razorpay =await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+                $match : { "paymentMethod":'razorpay' }},
+                { $group:{_id:{day:{$dayOfMonth:'$_id'}},totalAmount:{$sum:'$totalAmount'},count:{$sum:1}} },
+                { $sort : {"_id.day" : 1} }             
+                    ]).toArray()
+                resolve(razorpay,paypal,COD)
+            
+            })
+            
+        },
+        creditRefund:(orderId)=>{
+            return new Promise(async(resolve, reject) => {
+             const order = await db.get().collection(collection.ORDER_COLLECTION).findOne({_id:objectId(orderId)})
+             const userId = order ? order.userId:null
+             const amountTOBeCredited = order.totalAmount
+             await db.get().collection(collection.USER_COLLECTION).updateOne({_id:objectId(userId)},{$inc:{wallet:amountTOBeCredited}})
+             await db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{$set:{status:'Refund-Credited'}})
+             await db.get().collection(collection.RETURN_COLLECTION).updateOne({orderId:orderId},{$set:{status:'Refund-Credited'}})
+             resolve()
             })
         }
 }
